@@ -1,0 +1,30 @@
+import {htmlSignIn} from './components/authorization/sign-in/sign-in';
+import {htmlSignUp} from './components/authorization/sign-up/sign-up';
+import {htmlServerError} from './components/error-page/server-error/server-error';
+import {htmlNotFoundPage} from './components/error-page/not-found/not-found';
+import {htmlProfileMain} from "./components/profile/profile";
+
+
+const htmlMap = new Map();
+
+htmlMap.set(`htmlSignUp`, htmlSignUp);
+htmlMap.set(`htmlSignIn`, htmlSignIn);
+htmlMap.set(`htmlServerError`, htmlServerError);
+htmlMap.set(`htmlNotFoundPage`, htmlNotFoundPage);
+htmlMap.set('htmlProfileMain', htmlProfileMain);
+
+(function initRoute() {
+    renderPage('htmlProfileMain');
+})();
+
+function renderPage(html) {
+    const root = document.querySelector('#root')
+    root.innerHTML = htmlMap.get(html);
+}
+
+window.renderPage = renderPage;
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+})
