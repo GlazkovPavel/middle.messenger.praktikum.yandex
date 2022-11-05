@@ -1,8 +1,9 @@
 import {htmlSignIn} from './components/authorization/sign-in/sign-in';
 import {htmlSignUp} from './components/authorization/sign-up/sign-up';
+import {htmlProfileMain} from "./components/profile/profile";
 import {htmlServerError} from './components/error-page/server-error/server-error';
 import {htmlNotFoundPage} from './components/error-page/not-found/not-found';
-import {htmlProfileMain} from "./components/profile/profile";
+import {htmlChat} from "./components/chat/chat";
 
 
 const htmlMap = new Map();
@@ -12,9 +13,10 @@ htmlMap.set(`htmlSignIn`, htmlSignIn);
 htmlMap.set(`htmlServerError`, htmlServerError);
 htmlMap.set(`htmlNotFoundPage`, htmlNotFoundPage);
 htmlMap.set('htmlProfileMain', htmlProfileMain);
+htmlMap.set('htmlChat', htmlChat);
 
 (function initRoute() {
-    renderPage('htmlProfileMain');
+    renderPage('htmlChat');
 })();
 
 function renderPage(html) {
@@ -25,6 +27,5 @@ function renderPage(html) {
 window.renderPage = renderPage;
 
 document.addEventListener('DOMContentLoaded', () => {
-
 
 })

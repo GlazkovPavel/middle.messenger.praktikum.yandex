@@ -1,9 +1,10 @@
 import Handlebars from "handlebars";
+import {configProfileUserEng} from "../const";
 
 const template = `
  <div class="user-profile">
         <h2 class='profile__title'>Hi, {{user.name}}!</h2>
-        <form class="profile__form">
+        <form class="profile__form" novalidate>
           <fieldset class="profile__fields">
           <div class="profile__container">
               <p class="profile__form-input-name">{{email}}</p>
@@ -11,15 +12,21 @@ const template = `
                 type="email"
                 name="email"
                 class="profile__form-input"
+                required
+                minlength="7"
+                id="email-input"
                 value={{user.userEmail}}>
             </div>
+            <span class="form__input-error email-input-error"></span>
             <hr/>
             <div class="profile__container">
               <p class="profile__form-input-name">{{username}}</p>
               <input
                 type="text"
                 class="profile__form-input"
+                id="username-input"
                 value={{user.username}}>
+                <span class="form__input-error username-input-error"></span>
             </div>
             <hr/>
             <div class="profile__container">
@@ -27,7 +34,9 @@ const template = `
               <input
                 type="text"
                 class="profile__form-input"
+                id="name-input"
                 value={{user.name}}>
+                <span class="form__input-error name-input-error"></span>
             </div>
             <hr/>
             <div class="profile__container">
@@ -35,7 +44,9 @@ const template = `
               <input
                 type="text"
                 class="profile__form-input"
+                id="surname-input"
                 value={{user.surname}}>
+                <span class="form__input-error surname-input-error"></span>
             </div>
             <hr/>
             <div class="profile__container">
@@ -43,7 +54,9 @@ const template = `
               <input
                 type="text"
                 class="profile__form-input"
+                id="nameInChat-input"
                 value={{user.nameInChat}}>
+                <span class="form__input-error nameInChat-input-error"></span>
             </div>
             <hr/>
             <div class="profile__container">
@@ -51,40 +64,16 @@ const template = `
               <input
                 type="tel"
                 class="profile__form-input"
+                id="tel-input"
                 value={{user.tel}}>
+                <span class="form__input-error tel-input-error"></span>
             </div>
           </fieldset>
-    
-            <button class="profile__button profile__button_type_edit">Редактировать</button>
-            <button class="profile__button profile__button_type_save" >Сохранить</button>
         </form>
-        <button class="profile__button profile__button_type_signout">Выйти из аккаунта</button>
       </div>
 `
 
-const  configEng = {
-    user: {
-        name: 'Pavel',
-        surname: 'Glazkov',
-        username: 'pglazkov',
-        userEmail: 'pp@pp.com',
-        nameInChat: 'Pavel',
-        tel: '+7-920-117-9330'
-    },
-    username: 'Username',
-    name: 'Name',
-    surname: 'Surname',
-    nameInChat: 'Name In Chat',
-    title: 'Sign up',
-    email: 'E-Mail',
-    login: 'Login',
-    tel: 'Number phone',
-    password: 'Password',
-    cpassword: 'confirm the password',
-    signUp: 'Create account',
-    signIn: 'Sign In'
-}
 
-const renderer = Handlebars.compile(template)
+const renderer = Handlebars.compile(template);
 
-export const htmlProfileEdit = renderer(configEng);
+export const htmlProfileEdit = renderer(configProfileUserEng);

@@ -84,6 +84,89 @@
     transition: .1s linear;
   }
 
+  .profile-form {
+  }
+
+  .button__container {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+
+    .profile__button {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 13px;
+      line-height: 16px;
+      border: none;
+      outline: none;
+      align-self: center;
+      margin-bottom: 10px;
+      height: 45px;
+    }
+
+    .profile__button_type_edit-password {
+      cursor: pointer;
+      transition: opacity 0.3s;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .profile__button_type_edit {
+      .profile__button_type_edit-password();
+    }
+
+    .profile__button_type_save {
+      width: 100%;
+      background-color: #3456F3;
+      border-radius: 3px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      color: #FFFFFF;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .profile__button_type_save-edit {
+      .profile__button_type_save();
+      display: block;
+    }
+
+    .disabled {
+      display: none;
+    }
+
+    .profile__button_type_save:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    .profile__button_type_save-edit:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .profile__button_type_signout {
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 16px;
+      color: #d92b58;
+      align-self: center;
+      transition: opacity 0.3s;
+    }
+
+    .profile__button_type_signout:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  }
+
 
 }
 

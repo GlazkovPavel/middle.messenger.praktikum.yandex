@@ -1,0 +1,45 @@
+@import "../index";
+.chat {
+  display: flex;
+  height: 100vh;
+
+  .chat__list {
+    width: 310px;
+    background: #FBFBFB;
+    padding: @part10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat__main {
+    padding: 10px;
+    margin-left: 10px;
+    width: calc(100vw - 310px);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .photo {
+      display: flex;
+    }
+    .photo__avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+
+    .username {
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 13px;
+      color: #1E1E1E;
+    }
+  }
+
+}
+
+
