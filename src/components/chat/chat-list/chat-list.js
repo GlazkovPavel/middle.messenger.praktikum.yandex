@@ -1,4 +1,5 @@
 import Handlebars from "handlebars";
+import {configChatList} from "../const/const";
 
 export const template = `
 <div class="chat-header">
@@ -9,9 +10,6 @@ export const template = `
 
 </div> 
 `
-const configChatList = {
-    button: 'Профиль'
-}
 
 const render = Handlebars.compile(template);
 export const htmlChatList = render(configChatList);

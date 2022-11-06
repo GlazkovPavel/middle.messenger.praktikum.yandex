@@ -15,8 +15,10 @@ htmlMap.set(`htmlNotFoundPage`, htmlNotFoundPage);
 htmlMap.set('htmlProfileMain', htmlProfileMain);
 htmlMap.set('htmlChat', htmlChat);
 
+
+
 (function initRoute() {
-    renderPage('htmlChat');
+    renderPage('htmlProfileMain');
 })();
 
 function renderPage(html) {
@@ -27,5 +29,6 @@ function renderPage(html) {
 window.renderPage = renderPage;
 
 document.addEventListener('DOMContentLoaded', () => {
+
 
 })

@@ -14,15 +14,36 @@
   .chat__main {
     padding: 10px;
     margin-left: 10px;
-    width: calc(100vw - 310px);
+    width: calc(100vw - 360px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .space {
+    flex: 1;
+    border-bottom: 1px solid #EAEAEA;
+    border-top: 1px solid #EAEAEA;
+    display: flex;
+    justify-content: center;
+
+    .no-open-chat {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      color: #999999;
+      align-self: center;
+    }
   }
 
   .header {
     display: flex;
     justify-content: space-between;
+    height: 54px;
 
-    .photo {
+    .photo-container {
       display: flex;
+      align-items: center;
     }
     .photo__avatar {
       width: 35px;
@@ -37,9 +58,150 @@
       font-size: 13px;
       line-height: 13px;
       color: #1E1E1E;
+      margin-left: @part10px;
+    }
+
+    .button__menu {
+      border: none;
+      margin: 10px 30px 0 0;
+      text-align: center;
+      width: 26px;
+      height: 26px;
+      transition: background .2s ease-in;
+      border-radius: 50%;
+      &:hover {
+        background-color: rgba(185, 184, 184, 0.69);
+        .menu {
+          background: url("/static/images/menu-blue.svg");
+          background-repeat: no-repeat;
+        }
+      }
+      .menu {
+        margin-top: 4px;
+        border: none;
+        width: 3px;
+        height: 18px;
+        background: url("/static/images/menu-grey.svg");
+        transition: background .2s ease-in;
+        background-repeat: no-repeat;
+
+      }
     }
   }
 
+  .hover {
+      cursor: pointer;
+      opacity: 0.7;
+  }
+
+  .message {
+    display: flex;
+    align-items: center;
+    width: calc(100vw - 360px);
+    height: 54px;
+
+    .attachment {
+      width: 32px;
+      height: 32px;
+      background: url("/static/images/attachment-button.svg");
+      border: none;
+      background-repeat: no-repeat;
+      transition: opacity 0.3s;
+      outline: none;
+
+      &:hover {
+        .hover()
+      }
+
+    }
+
+    .form {
+      margin-left: 10px;
+      display: flex;
+      width: calc(100% - 32px);
+
+      &__input {
+        flex: 1;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        padding-left: 8px;
+        background-color: #EFEFEF;
+        height: 32px;
+        margin-right: @part10px;
+
+      }
+      &__button {
+        background: url("/static/images/send-button.svg");
+        border: none;
+        background-repeat: no-repeat;
+        width: 32px;
+        height: 32px;
+        transition: opacity 0.3s;
+
+        &:hover {
+          .hover()
+        }
+      }
+    }
+  }
+
+  .popup {
+    width: 162px;
+    height: 128px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    position: absolute;
+    padding: @part10px;
+    left: 10px;
+    bottom: 70px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s linear;
+
+    &__card {
+      display: flex;
+      align-items: center;
+      height: 42px;
+      transition: background-color .3s ease-in;
+      width: 162px;
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(30, 30, 30, 0.1);
+      }
+
+      &:first-child {
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+    }
+
+    &__card-img {
+      background: none;
+      margin-left: 4px;
+    }
+
+
+    &__card-text {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #1E1E1E;
+      margin-left: 15px;
+      background: none;
+    }
+  }
+  .popup_opened{
+    transition: visibility 0s, opacity 0.3s linear;
+    visibility: visible;
+    opacity: 1;
+
+  }
 }
 
 
