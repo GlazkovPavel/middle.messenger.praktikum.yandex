@@ -26,3 +26,8 @@ export const configProfileUserPasswordEng = {
     newPassword: 'Password',
     newCpassword: 'Confirm the password',
 }
+
+export const config = {
+    photo: 'https://sun9-north.userapi.com/sun9-88/s/v1/if1/Ut6lK2K0J5PgfQ315J18BI2BIryVYtizUK6IXM2HMwUbpF2cMbObnEzUNcncenN2cd0ZN9en.jpg?size=2160x2160&quality=96&type=album',
+    name: 'Pavel'
+};

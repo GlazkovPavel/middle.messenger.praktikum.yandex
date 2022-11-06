@@ -1,6 +1,7 @@
 import Handlebars from "handlebars";
 import {htmlProfileEdit} from "./profile-edit-user/profile-edit-user"
 import {htmlProfileUserPasswordEng} from "./profile-edit-password/profile-edit-password";
+import {config} from "./const";
 
 const template = `
 <div class="container__profile">
@@ -25,14 +26,8 @@ const template = `
         </div>
 
     </div>
-
 </div>
 `
-
-const config = {
-    photo: 'https://sun9-north.userapi.com/sun9-88/s/v1/if1/Ut6lK2K0J5PgfQ315J18BI2BIryVYtizUK6IXM2HMwUbpF2cMbObnEzUNcncenN2cd0ZN9en.jpg?size=2160x2160&quality=96&type=album',
-    name: 'Pavel'
-};
 
 const render = Handlebars.compile(template);
 export const htmlProfileMain = render(config);
@@ -72,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         evt.preventDefault();
     });
 
-    formInput?.addEventListener('input', function () {
+    formInput.addEventListener('input', function () {
         checkInputValidity();
     });
 

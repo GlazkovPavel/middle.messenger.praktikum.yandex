@@ -18,7 +18,7 @@ htmlMap.set('htmlChat', htmlChat);
 
 
 (function initRoute() {
-    renderPage('htmlProfileMain');
+    renderPage('htmlSignUp');
 })();
 
 function renderPage(html) {
