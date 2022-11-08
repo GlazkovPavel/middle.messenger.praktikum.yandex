@@ -1,0 +1,30 @@
+@import "../index";
+.container__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25vh auto;
+  width: 20 * @part10px;
+  height: 26 * @part10px;
+
+  .title{
+    color: #1E1E1E;
+    font-weight: 500;
+    margin-bottom: 5 * @part10px;
+  }
+  .title__number {
+    font-size: 4 * @part10px;
+    line-height: 4 * @part10px;
+    margin-bottom: 7 * @part10px;
+  }
+  .title__text {
+    font-size: 2 * @part10px;
+    line-height: 2 * @part10px;
+  }
+
+  .button {
+    border: none;
+    color: @colorBlue;
+    cursor: pointer;
+  }
+}

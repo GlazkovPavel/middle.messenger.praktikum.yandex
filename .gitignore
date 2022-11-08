@@ -1,0 +1,5 @@
+dist
+.github
+.parcel-cache
+.parseIrc
+node_modules
