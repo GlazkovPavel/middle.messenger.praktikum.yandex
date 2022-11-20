@@ -1,6 +1,6 @@
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 
-const template = `
+const template: string = `
 <div class="container">
     <p class="container__title">{{ title }}</p>
     <form class="container__form" name="form">

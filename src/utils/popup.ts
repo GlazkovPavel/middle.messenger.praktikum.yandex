@@ -3,20 +3,23 @@ import {escape} from "../const/const";
 export default class Popup {
 
     _isOpenPopup = false;
+    private popupElement: HTMLElement;
 
-    constructor(popupSelector) {
+    constructor(popupSelector: any) {
         this.popupElement = document.querySelector(popupSelector);
     }
 
-    _handleEscClose = (evt) => {
+    _handleEscClose = (evt: { key: string; }) => {
         if (evt.key === escape) {
             this.close();
         }
     };
 
-    _handelMouseDownClose = (evt) => {
-        if (!evt.target.classList.contains('popup_opened') && !evt.target.classList.contains('attachment')
-            && !evt.target.offsetParent.classList.contains('popup_opened')) {
+    _handelMouseDownClose = (evt: any) => {
+        const popupNotOpened = !evt.target.classList.contains('popup_opened');
+        const hasNoAttachments = !evt.target.classList.contains('attachment');
+        const parentPopupNotOpened = !evt.target.offsetParent.classList.contains('popup_opened');
+        if (popupNotOpened && hasNoAttachments && parentPopupNotOpened) {
             this.close();
         }
     }

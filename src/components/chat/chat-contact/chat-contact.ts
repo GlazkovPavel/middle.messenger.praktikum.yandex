@@ -1,7 +1,7 @@
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 import {configChatContact} from "../const/const";
 
-export const template = `
+export const template: string = `
 <div class="chat-contact">
      <div class="photo">
          <img class="photo__avatar" alt="avatar" src={{photo}}>

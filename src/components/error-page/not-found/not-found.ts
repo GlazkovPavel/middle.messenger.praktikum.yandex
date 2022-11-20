@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 
 const template = `
 <div class="container__error">
@@ -9,11 +9,11 @@ const template = `
 `;
 
 const configEng = {
-    numberError: '500',
-    textError: 'We are already fixing',
+    numberError: '404',
+    textError: 'Page not found',
     buttonText: 'Back to chats'
 }
 
 const renderer = Handlebars.compile(template)
 
-export const htmlServerError = renderer(configEng)
+export const htmlNotFoundPage = renderer(configEng)

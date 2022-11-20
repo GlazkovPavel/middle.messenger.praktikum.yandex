@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 import {htmlChatList} from "./chat-list/chat-list";
 import {htmlChatContact} from "./chat-contact/chat-contact";
 import PopupAttachment from "./utils/PopupAttachment";

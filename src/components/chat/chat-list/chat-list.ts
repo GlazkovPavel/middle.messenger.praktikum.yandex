@@ -1,7 +1,7 @@
-import Handlebars from "handlebars";
+import * as Handlebars from "handlebars";
 import {configChatList} from "../const/const";
 
-export const template = `
+export const template: string = `
 <div class="chat-header">
     <button class="button">{{button}} ></button>
     <input class="input" type="text" placeholder="search...">

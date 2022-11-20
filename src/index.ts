@@ -5,6 +5,11 @@ import {htmlServerError} from './components/error-page/server-error/server-error
 import {htmlNotFoundPage} from './components/error-page/not-found/not-found';
 import {htmlChat} from "./components/chat/chat";
 
+declare global {
+    interface window {
+        renderPage?: any;
+    }
+}
 
 const htmlMap = new Map();
 
@@ -18,10 +23,10 @@ htmlMap.set('htmlChat', htmlChat);
 
 
 (function initRoute() {
-    renderPage('htmlSignUp');
+    renderPage('htmlChat');
 })();
 
-function renderPage(html) {
+function renderPage(html: string) {
     const root = document.querySelector('#root')
     root.innerHTML = htmlMap.get(html);
 }
