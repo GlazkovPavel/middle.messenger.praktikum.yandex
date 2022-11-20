@@ -52,11 +52,20 @@ export const htmlChat = render(configChat);
 
 function renderElement(query: string, block: Button) {
     const element = document.querySelector(query);
+    block.getContent().classList.add('form__button')
     element.appendChild(block.getContent());
     return element;
 }
 
-const button = new Button({});
+function onSubmit(): void {
+    console.log('tratata');
+}
+
+const button = new Button({
+    events: {
+        click: () => onSubmit(),
+    },
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 

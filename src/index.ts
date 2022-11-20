@@ -1,4 +1,4 @@
-import {htmlSignIn} from './components/authorization/sign-in/sign-in';
+import {SignIn} from './components/authorization/sign-in/sign-in';
 import {htmlSignUp} from './components/authorization/sign-up/sign-up';
 import {htmlProfileMain} from "./components/profile/profile";
 import {htmlServerError} from './components/error-page/server-error/server-error';
@@ -14,26 +14,24 @@ declare global {
 const htmlMap = new Map();
 
 htmlMap.set(`htmlSignUp`, htmlSignUp);
-htmlMap.set(`htmlSignIn`, htmlSignIn);
 htmlMap.set(`htmlServerError`, htmlServerError);
 htmlMap.set(`htmlNotFoundPage`, htmlNotFoundPage);
 htmlMap.set('htmlProfileMain', htmlProfileMain);
 htmlMap.set('htmlChat', htmlChat);
 
+const signIn = new SignIn();
 
 
-(function initRoute() {
-    renderPage('htmlChat');
-})();
 
-function renderPage(html: string) {
-    const root = document.querySelector('#root')
-    root.innerHTML = htmlMap.get(html);
-}
+//window.renderPage = renderPage;
 
-window.renderPage = renderPage;
+document.addEventListener('DOMContentLoaded', async () => {
 
-document.addEventListener('DOMContentLoaded', () => {
+    function renderPage() {
+        const root = document.querySelector('#root')
+        root.append(signIn.getContent())
+    }
 
+    renderPage()
 
 })

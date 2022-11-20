@@ -1,30 +1,68 @@
-import * as Handlebars from "handlebars";
+import Block from "../../../utils/block";
+import template from './sign-in.hbs';
+import {Input} from "../../shared/input/input";
+import {Button} from "../../shared/button";
 
-const template: string = `
-<div class="container">
-    <p class="container__title">{{ title }}</p>
-    <form class="container__form" name="form">
-        <div class="container__form-type">
-            <label class="container__form-label" for="login">{{ login }}</label>
-            <input type="text" placeholder={{ login }} class="container__form-input" name="login" id="login">
-        </div>
-        <div class="container__form-type">
-            <label class="container__form-label" for="password">{{ password }}</label>
-            <input type="password" placeholder={{ password }} class="container__form-input" name="password" id="password">
-        </div>
-        <button class="container__form-button sign-in">{{ signIn }}</button>
-    </form>
-    <button onclick={window.renderPage('htmlSignUp')} class="container__button sign-up router">{{ signUp }}</button>
-</div>`
-
-const  configEng = {
-    title: 'Enter',
-    login: 'Login',
-    password: 'Password',
-    signIn: 'Sign in',
-    signUp: 'Sign up'
+interface ISubmitForm {
+    password: string;
+    login: string;
 }
+export class SignIn extends Block {
 
-const renderer = Handlebars.compile(template)
+    public form: HTMLFormElement;
+    private password: HTMLInputElement;
+    private login: HTMLInputElement;
 
-export const htmlSignIn = renderer(configEng)
+    constructor() {
+        super({});
+    }
+
+    init(): void {
+        this.children.login = new Input({
+            name: 'login',
+            id: 'login',
+            type: 'text',
+            placeholder: 'Логин'
+        });
+        this.children.password = new Input({
+            name: 'password',
+            id: 'password',
+            type: 'password',
+            placeholder: 'Пароль'
+        });
+
+        this.children.button = new Button({
+            label: 'Войти',
+            id: 'sign-in',
+            events: {
+                click: () => this.onSubmit()
+            },
+        });
+
+        setTimeout(() => {
+            this.handlerForm();
+        }, 0)
+    };
+
+    handlerForm(): void {
+        this.form = document.querySelector('.container__form');
+        this.password = this.form.querySelector('#password') as HTMLInputElement;
+        this.login = this.form.querySelector('#login') as HTMLInputElement;
+        this.password.classList.add('container__form-input');
+        this.login.classList.add('container__form-input');
+        this.form.querySelector('#sign-in').classList.add('container__form-button', 'sign-in');
+    }
+
+    onSubmit(): void {
+        const submitForm: ISubmitForm = {
+            password: this.password.value,
+            login: this.login.value
+        }
+        console.log('this.form ', submitForm);
+
+    }
+
+    render() {
+        return this.compile(template, {...this.props});
+    }
+}

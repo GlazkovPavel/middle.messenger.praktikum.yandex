@@ -1,0 +1,15 @@
+<div class="container">
+    <p class="container__title">Enter</p>
+    <form class="container__form" name="myForm">
+        <div class="container__form-type">
+            <label class="container__form-label" for="login">login</label>
+            {{{ login }}}
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="password">password</label>
+            {{{ password }}}
+        </div>
+        {{{ button }}}
+    </form>
+    <button onclick={window.renderPage('htmlSignUp')} class="container__button sign-up router">Sign-Up</button>
+</div>
