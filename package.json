@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "---",
   "dependencies": {
-    "@parcel/transformer-less": "^2.7.0"
+    "@parcel/transformer-less": "^2.7.0",
+    "nanoid": "^4.0.0"
   },
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",

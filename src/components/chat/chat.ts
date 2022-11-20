@@ -3,6 +3,7 @@ import {htmlChatList} from "./chat-list/chat-list";
 import {htmlChatContact} from "./chat-contact/chat-contact";
 import PopupAttachment from "./utils/PopupAttachment";
 import {configChat} from "./const/const";
+import {Button} from "../shared/button";
 
 export const template = `
 <div class="chat">
@@ -26,7 +27,6 @@ export const template = `
             <button class="attachment"></button>
             <form class="form">
                 <input type="text" placeholder="Message" class="form__input">
-                <button class="form__button"></button>
             </form>
         </div>
         <div class="popup">
@@ -48,7 +48,15 @@ export const template = `
 `
 
 const render = Handlebars.compile(template);
-export const htmlChat = render(configChat)
+export const htmlChat = render(configChat);
+
+function renderElement(query: string, block: Button) {
+    const element = document.querySelector(query);
+    element.appendChild(block.getContent());
+    return element;
+}
+
+const button = new Button({});
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -70,5 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             openPopupAttachment.open();
         }
     })
+
+    renderElement('.form', button);
 
 });
