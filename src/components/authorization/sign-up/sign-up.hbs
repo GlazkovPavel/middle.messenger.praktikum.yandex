@@ -1,0 +1,35 @@
+<div class="container">
+    <p class="container__title">{{ title }}</p>
+    <form class="container__form" name="form">
+        <div class="container__form-type">
+            <label class="container__form-label" for="email">Email</label>
+            {{{email}}}
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="login">Login</label>
+            {{{login}}}
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="name">Name</label>
+            {{{firstName}}}
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="surname">Surname</label>
+            {{{secondName}}}
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="tel">Phone</label>
+            {{{phone}}}
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="password">Password</label>
+            {{{password}}}
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="сpassword">Cpassword</label>
+            {{{cpassword}}}
+        </div>
+        {{{ button }}}
+    </form>
+    <button onclick={window.renderPage('htmlSignIn')} class="container__button sign-up router">SignIn</button>
+</div>

@@ -9,7 +9,7 @@ interface ISubmitForm {
 }
 export class SignIn extends Block {
 
-    public form: HTMLFormElement;
+    private form: HTMLFormElement;
     private password: HTMLInputElement;
     private login: HTMLInputElement;
 
@@ -59,7 +59,6 @@ export class SignIn extends Block {
             login: this.login.value
         }
         console.log('this.form ', submitForm);
-
     }
 
     render() {

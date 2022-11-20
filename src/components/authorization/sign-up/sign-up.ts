@@ -1,55 +1,99 @@
-import * as Handlebars from "handlebars";
+import template from './sign-up.hbs';
+import Block from "../../../utils/block";
+import {Input} from "../../shared/input/input";
+import {Button} from "../../shared/button";
 
-const template: string = `
-<div class="container">
-    <p class="container__title">{{ title }}</p>
-    <form class="container__form" name="form">
-        <div class="container__form-type">
-            <label class="container__form-label" for="email">{{ email }}</label>
-            <input type="email" placeholder={{ email }} class="container__form-input" name="email" id="email">
-        </div>
-        <div class="container__form-type">
-            <label class="container__form-label" for="login">{{ login }}</label>
-            <input type="text" placeholder={{ login }} class="container__form-input" name="login" id="login">
-        </div>
-        <div class="container__form-type">
-            <label class="container__form-label" for="name">{{ name }}</label>
-            <input type="text" placeholder={{ name }} class="container__form-input" name="name" id="name">
-        </div>
-        <div class="container__form-type">
-            <label class="container__form-label" for="surname">{{ surname }}</label>
-            <input type="text" placeholder={{ surname }} class="container__form-input" name="surname" id="surname">
-        </div>
-        <div class="container__form-type">
-            <label class="container__form-label" for="tel">{{ tel }}</label>
-            <input type="tel" placeholder={{ tel }} class="container__form-input" name="tel" id="tel">
-        </div>
-        <div class="container__form-type">
-            <label class="container__form-label" for="password">{{ password }}</label>
-            <input type="password" placeholder={{ password }} class="container__form-input" name="password" id="password">
-        </div>
-        <div class="container__form-type">
-            <label class="container__form-label" for="сpassword">{{ cpassword }}</label>
-            <input type="password" placeholder={{ cpassword }} class="container__form-input" name="сpassword" id="сpassword">
-        </div>
-        <button type="submit" class="container__form-button sign-in">{{ signUp }}</button>
-    </form>
-    <button onclick={window.renderPage('htmlSignIn')} class="container__button sign-up router">{{ signIn }}</button>
-</div>`
-
-const  configEng = {
-    title: 'Sign up',
-    email: 'E-Mail',
-    login: 'Login',
-    name: 'Name',
-    surname: 'Surname',
-    tel: 'Number phone',
-    password: 'Password',
-    cpassword: 'confirm the password',
-    signUp: 'Create account',
-    signIn: 'Sign In'
+interface ISubmitForm {
+    password: string;
+    login: string;
 }
 
-const renderer = Handlebars.compile(template)
+export class SignUp extends Block {
+    private form: HTMLFormElement;
+    private password: HTMLInputElement;
+    private login: HTMLInputElement;
 
-export const htmlSignUp = renderer(configEng)
+    constructor() {
+        super({});
+    }
+
+    init() {
+        this.children.firstName = new Input({
+            name: 'first_name',
+            id: 'first_name',
+            type: 'text',
+            placeholder: 'Имя'
+        });
+
+        this.children.secondName = new Input({
+            name: 'second_name',
+            id: 'second_name',
+            type: 'text',
+            placeholder: 'Фамилия'
+        });
+
+        this.children.email = new Input({
+            name: 'email',
+            id: 'email',
+            type: 'email',
+            placeholder: 'E-mail'
+        });
+
+        this.children.login = new Input({
+            name: 'login',
+            id: 'login',
+            type: 'text',
+            placeholder: 'Логин'
+        });
+
+        this.children.phone = new Input({
+            name: 'phone',
+            id: 'phone',
+            type: 'tel',
+            placeholder: 'Телефон'
+        });
+
+        this.children.password = new Input({
+            name: 'password',
+            id: 'password',
+            type: 'password',
+            placeholder: 'Пароль'
+        });
+
+        this.children.cpassword = new Input({
+            name: 'cpassword',
+            id: 'cpassword',
+            type: 'cpassword',
+            placeholder: 'Пароль'
+        });
+
+        this.children.button = new Button({
+            label: 'Зарегистрироваться',
+            events: {
+                click: () => this.onSubmit(),
+            },
+        });
+    }
+
+    handlerForm(): void {
+        this.form = document.querySelector('.container__form');
+        this.password = this.form.querySelector('#password') as HTMLInputElement;
+        this.login = this.form.querySelector('#login') as HTMLInputElement;
+        this.password.classList.add('container__form-input');
+        this.login.classList.add('container__form-input');
+        this.form.querySelector('#sign-in').classList.add('container__form-button', 'sign-in');
+    }
+
+    onSubmit(): void {
+        const submitForm: ISubmitForm = {
+            password: this.password.value,
+            login: this.login.value
+        }
+        console.log('this.form ', submitForm);
+    }
+
+    render() {
+        return this.compile(template, {...this.props});
+    }
+}
+
