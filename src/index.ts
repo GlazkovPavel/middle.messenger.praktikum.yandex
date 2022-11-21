@@ -18,7 +18,7 @@ htmlMap.set(`htmlNotFoundPage`, htmlNotFoundPage);
 htmlMap.set('htmlProfileMain', htmlProfileMain);
 htmlMap.set('htmlChat', htmlChat);
 
-const signIn = new SignIn();
+//const signIn = new SignIn();
 const signUp = new SignUp();
 
 
