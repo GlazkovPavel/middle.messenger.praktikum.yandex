@@ -1,19 +1,33 @@
-import * as Handlebars from "handlebars";
+import template from './server-error.hbs';
+import Block from "../../../utils/block";
+import {Button} from "../../shared/button";
 
-const template = `
-<div class="container__error">
-    <p class="title title__number">{{numberError}}</p>
-    <p class="title title__text">{{textError}}</p>
-    <button onclick="window.renderPage('htmlChat')" class="button">{{buttonText}}</button>
-</div>
-`;
+export class ServerError extends Block {
+    constructor() {
+        super({});
+    }
 
-const configEng = {
-    numberError: '500',
-    textError: 'We are already fixing',
-    buttonText: 'Back to chats'
+    init() {
+        this.children.button = new Button({
+            label: 'Back to chats',
+            id: 'back-to-chats',
+            events: {
+                click: () => this.backToChats(),
+            },
+        });
+
+        setTimeout(() => this.handlerRender(), 0);
+    }
+
+    private backToChats(): void {
+        console.log('back-to-chats');
+    }
+
+    handlerRender(): void {
+        document.querySelector('#back-to-chats').classList.add('button');
+    }
+
+    render() {
+        return this.compile(template, {...this.props})
+    }
 }
-
-const renderer = Handlebars.compile(template)
-
-export const htmlServerError = renderer(configEng)
