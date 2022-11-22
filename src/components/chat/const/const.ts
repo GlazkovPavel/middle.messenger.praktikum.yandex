@@ -28,7 +28,3 @@ export const configChatContact = {
     timeMessage: '10:20',
     totalMessage: 2
 };
-
-export const configChatList = {
-    button: 'Профиль'
-}

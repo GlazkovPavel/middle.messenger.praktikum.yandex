@@ -81,7 +81,7 @@ export class SignUp extends Block {
 
         setTimeout(() => {
             this.handlerForm();
-        }, 0)
+        }, 0);
     }
 
     handlerForm(): void {
@@ -93,15 +93,11 @@ export class SignUp extends Block {
         this.form.querySelector('#sign-up').classList.add('container__form-button');
     }
 
-    onSubmit(): void {
-
-        let submitForm: ISignUp = {};
-
+    private onSubmit(): void {
+        const submitForm: ISignUp = {};
         this.inputs.forEach((item: HTMLInputElement) => {
-            // @ts-ignore
-            submitForm[item.id] = item.value;
-        })
-
+            submitForm[item.id as keyof ISignUp] = item.value;
+        });
         console.log(submitForm);
     }
 

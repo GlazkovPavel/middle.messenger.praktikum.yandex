@@ -1,15 +1,45 @@
-import * as Handlebars from "handlebars";
-import {configChatList} from "../const/const";
+import template from './chat-list.hbs';
+import Block from "../../../utils/block";
+import {Button} from "../../shared/button";
+import {Input} from "../../shared/input/input";
 
-export const template: string = `
-<div class="chat-header">
-    <button class="button">{{button}} ></button>
-    <input class="input" type="text" placeholder="search...">
-</div>   
-<div class="chats">
+export class ChatList extends Block {
+  constructor() {
+    super({});
+  }
 
-</div> 
-`
+  init() {
 
-const render = Handlebars.compile(template);
-export const htmlChatList = render(configChatList);
+    this.children.input = new Input({
+      placeholder: 'search...',
+      id: 'input-search',
+      type: 'text'
+    })
+
+    this.children.button = new Button({
+      id: 'search',
+      label: 'profile',
+      events: {
+        click: () => this.onSubmit()
+      },
+    })
+
+    setTimeout(() => {
+      this.handlerTemplate();
+    }, 0)
+  }
+
+  private onSubmit(): void {
+    console.log('search...')
+  }
+
+  private handlerTemplate(): void {
+    
+  }
+
+
+
+  render() {
+    return this.compile(template, {...this.props});
+  }
+}
