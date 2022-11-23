@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const root = document.querySelector('#root')
         root.append(chat.getContent());
         chat.renderChatList();
+        setTimeout(() => chat.renderMessage(), 5000)
     }
 
     renderPage()
