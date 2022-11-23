@@ -9,17 +9,18 @@
         <span class="username">{{name}}</span>
       </div>
       <span class="button__menu">
-                <button class="menu"></button>
-            </span>
+          <button class="menu"></button>
+      </span>
     </div>
     <div class="space">
       <span class="no-open-chat">Выберите чат чтобы отправить сообщение</span>
     </div>
     <div class="message">
-      <button class="attachment"></button>
+      {{{ buttonAttachment }}}
       <form class="form">
-        <input type="text" placeholder="Message" class="form__input">
+        {{{ inputMessage }}}
       </form>
+        {{{ buttonSendMessage }}}
     </div>
     <div class="popup">
       <div class="popup__card">

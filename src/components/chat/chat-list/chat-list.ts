@@ -2,7 +2,7 @@ import template from './chat-list.hbs';
 import Block from "../../../utils/block";
 import {Button} from "../../shared/button";
 import {Input} from "../../shared/input/input";
-import {IChatMessage} from "../chat-message/chat-message.interface";
+import {IChatMessage} from "../interfaces/chat-message.interface";
 import {ChatMessage} from "../chat-message/chat-message";
 
 export class ChatList extends Block {
@@ -42,7 +42,7 @@ export class ChatList extends Block {
 
   public renderMessage(props: IChatMessage): void {
     const message = new ChatMessage(props);
-    document.querySelector('.chats').append(message.getContent());
+    document.querySelector('.chats').prepend(message.getContent());
   }
 
 

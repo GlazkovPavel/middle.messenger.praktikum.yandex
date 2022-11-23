@@ -53,7 +53,7 @@ export class SignIn extends Block {
         this.form.querySelector('#sign-in').classList.add('container__form-button', 'sign-in');
     }
 
-    onSubmit(): void {
+    private onSubmit(): void {
         const submitForm: ISubmitForm = {
             password: this.password.value,
             login: this.login.value

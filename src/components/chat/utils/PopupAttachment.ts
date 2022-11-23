@@ -1,4 +1,4 @@
-import Popup from "../../../utils/popup";
+import { Popup } from "../../shared/popup/popup";
 
 export default class PopupAttachment extends Popup {
     constructor(popupSelector: string) {

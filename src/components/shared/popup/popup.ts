@@ -1,11 +1,11 @@
-import {escape} from "../const/const";
+import {escape} from "../../../const/const";
 
-export default class Popup {
+export class Popup {
 
     _isOpenPopup = false;
     private popupElement: HTMLElement;
 
-    constructor(popupSelector: any) {
+    constructor(popupSelector: string) {
         this.popupElement = document.querySelector(popupSelector);
     }
 
