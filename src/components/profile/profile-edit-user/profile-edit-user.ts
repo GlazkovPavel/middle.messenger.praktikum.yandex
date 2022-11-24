@@ -1,79 +1,87 @@
-import Handlebars from "handlebars";
-import {configProfileUserEng} from "../const";
+import template from './profile-edit-user.hbs';
+import Block from "../../../utils/block";
+import {Input} from "../../shared/input/input";
 
-const template = `
- <div class="user-profile">
-        <h2 class='profile__title'>Hi, {{user.name}}!</h2>
-        <form class="profile__form" novalidate>
-          <fieldset class="profile__fields">
-          <div class="profile__container">
-              <p class="profile__form-input-name">{{email}}</p>
-              <input
-                type="email"
-                name="email"
-                class="profile__form-input"
-                required
-                minlength="7"
-                id="email-input"
-                value={{user.userEmail}}>
-            </div>
-            <span class="form__input-error email-input-error"></span>
-            <hr/>
-            <div class="profile__container">
-              <p class="profile__form-input-name">{{username}}</p>
-              <input
-                type="text"
-                class="profile__form-input"
-                id="username-input"
-                value={{user.username}}>
-                <span class="form__input-error username-input-error"></span>
-            </div>
-            <hr/>
-            <div class="profile__container">
-              <p class="profile__form-input-name">{{name}}</p>
-              <input
-                type="text"
-                class="profile__form-input"
-                id="name-input"
-                value={{user.name}}>
-                <span class="form__input-error name-input-error"></span>
-            </div>
-            <hr/>
-            <div class="profile__container">
-              <p class="profile__form-input-name">{{surname}}</p>
-              <input
-                type="text"
-                class="profile__form-input"
-                id="surname-input"
-                value={{user.surname}}>
-                <span class="form__input-error surname-input-error"></span>
-            </div>
-            <hr/>
-            <div class="profile__container">
-              <p class="profile__form-input-name">{{nameInChat}}</p>
-              <input
-                type="text"
-                class="profile__form-input"
-                id="nameInChat-input"
-                value={{user.nameInChat}}>
-                <span class="form__input-error nameInChat-input-error"></span>
-            </div>
-            <hr/>
-            <div class="profile__container">
-              <p class="profile__form-input-name">{{tel}}</p>
-              <input
-                type="tel"
-                class="profile__form-input"
-                id="tel-input"
-                value={{user.tel}}>
-                <span class="form__input-error tel-input-error"></span>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-`
+interface IUser {
+  userEmail: string;
+  username: string;
+  name: string;
+  surname: string;
+  nameInChat: string;
+  tel: string;
+}
+export class ProfileEditUser extends Block {
+  private user: any;
 
+  constructor(user: IUser) {
+    super({});
+    this.user = user;
+  }
 
-const renderer = Handlebars.compile(template);
+  init() {
+    this.children.userEmail = new Input({
+      type: "email",
+      name: "email",
+      class: "profile__form-input",
+      required: "required",
+      minlength: "4",
+      id: "email-input",
+      value: `${this.user.userEmail}`
+    });
 
-export const htmlProfileEdit = renderer(configProfileUserEng);
+    this.children.username = new Input({
+      type: "text",
+      name: "username",
+      class: "profile__form-input",
+      required: "required",
+      minlength: "2",
+      id: "username-input",
+      value: `${this.user.username}`
+    });
+
+    this.children.name = new Input({
+      type: "text",
+      name: "name",
+      class: "profile__form-input",
+      required: "required",
+      minlength: "2",
+      id: "name-input",
+      value: `${this.user.name}`
+    });
+
+    this.children.surname = new Input({
+      type: "text",
+      name: "surname",
+      class: "profile__form-input",
+      required: "required",
+      minlength: "2",
+      id: "surname-input",
+      value: `${this.user.surname}`
+    });
+
+    this.children.nameInChat = new Input({
+      type: "text",
+      name: "nameInChat",
+      class: "profile__form-input",
+      required: "required",
+      minlength: "2",
+      id: "nameInChat-input",
+      value: `${this.user.nameInChat}`
+    });
+
+    this.children.tel = new Input({
+      type: "tel",
+      name: "tel",
+      class: "profile__form-input",
+      required: "required",
+      minlength: "2",
+      id: "tel-input",
+      value: `${this.user.tel}`
+    });
+
+  }
+
+  render() {
+    return this.compile(template, {...this.props});
+  }
+}

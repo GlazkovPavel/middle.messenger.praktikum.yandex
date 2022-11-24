@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
-import {htmlProfileEdit} from "./profile-edit-user/profile-edit-user"
-import {htmlProfileUserPasswordEng} from "./profile-edit-password/profile-edit-password";
+import { ProfileEditUser} from "./profile-edit-user/profile-edit-user"
 import {config} from "./const";
+import {ProfileEditPassword} from "./profile-edit-password/profile-edit-password";
 
 const template = `
 <div class="container__profile">
@@ -32,9 +32,21 @@ const template = `
 const render = Handlebars.compile(template);
 export const htmlProfileMain = render(config);
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  const profileEditUserProps = {
+    userEmail: "gg@gg.gg",
+    username: 'usernamePasha',
+    name: 'Pasha',
+    surname: 'Glazkov',
+    nameInChat: 'PG',
+    tel: '8-999-9965432'
+  }
+
     const profileForm = document.querySelector('.profile-form');
-    profileForm.innerHTML = htmlProfileEdit;
+    const profileEditUser = new ProfileEditUser(profileEditUserProps);
+    profileForm.innerHTML = profileEditUser.getContent().innerHTML;
     const editButton = document.querySelector('.profile__button_type_edit');
     const saveButton = document.querySelector('.profile__button_type_save');
     const editPasswordButton = document.querySelector('.profile__button_type_edit-password');
@@ -87,9 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     editPasswordButton.addEventListener('click', (evt) => {
         evt.preventDefault();
+        const chatProfile = new ProfileEditPassword()
         editButton.classList.add('disabled');
         editPasswordButton.classList.add('disabled');
-        profileForm.innerHTML = htmlProfileUserPasswordEng;
+        profileForm.innerHTML = chatProfile.getContent().innerHTML;
         savePasswordBtn.classList.remove('disabled');
 
     });
@@ -99,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         editButton.classList.remove('disabled');
         editPasswordButton.classList.remove('disabled');
         savePasswordBtn.classList.add('disabled');
-        profileForm.innerHTML = htmlProfileEdit;
+        profileForm.innerHTML = profileEditUser.getContent().innerHTML;
     })
 
 })
