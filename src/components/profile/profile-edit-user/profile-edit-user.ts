@@ -1,6 +1,6 @@
 import template from './profile-edit-user.hbs';
-import Block from "../../../utils/block";
 import {Input} from "../../shared/input/input";
+import Block from '../../../utils/block';
 
 interface IUser {
   userEmail: string;
