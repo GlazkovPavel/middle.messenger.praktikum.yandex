@@ -9,22 +9,17 @@ export class NotFound extends Block {
 
     init() {
         this.children.button = new Button({
-            label: 'Back to chats',
-            id: 'back-to-chats',
-            events: {
-                click: () => this.backToChats(),
-            },
+          label: 'Back to chats',
+          id: 'back-to-chats',
+          class: 'button',
+          events: {
+              click: () => this.backToChats(),
+          },
         });
-
-        setTimeout(() => this.handlerRender(), 0);
     }
 
     private backToChats(): void {
         console.log('back-to-chats');
-    }
-
-    handlerRender(): void {
-        document.querySelector('#back-to-chats').classList.add('button');
     }
 
     render() {

@@ -34,32 +34,23 @@ export class SignIn extends Block {
         this.children.button = new Button({
             label: 'Войти',
             id: 'sign-in',
+            class: 'container__form-button sign-in',
             events: {
                 click: () => this.onSubmit()
             },
         });
-
-        setTimeout(() => {
-            this.handlerForm();
-        }, 0)
     };
 
-    handlerForm(): void {
-        this.form = document.querySelector('.container__form');
-        this.password = this.form.querySelector('#password') as HTMLInputElement;
-        this.login = this.form.querySelector('#login') as HTMLInputElement;
-        this.password.classList.add('container__form-input');
-        this.login.classList.add('container__form-input');
-        this.form.querySelector('#sign-in').classList.add('container__form-button', 'sign-in');
-    }
 
-    private onSubmit(): void {
-        const submitForm: ISubmitForm = {
-            password: this.password.value,
-            login: this.login.value
-        }
-        console.log('this.form ', submitForm);
-    }
+  private onSubmit(): void {
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof Input)
+      .map((child) => ([(child as Input).getName(), (child as Input).getValue()]))
+
+    const data = Object.fromEntries(values);
+    console.log(data);
+  }
 
     render() {
         return this.compile(template, {...this.props});

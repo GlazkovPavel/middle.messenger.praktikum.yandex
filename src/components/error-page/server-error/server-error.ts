@@ -11,20 +11,15 @@ export class ServerError extends Block {
         this.children.button = new Button({
             label: 'Back to chats',
             id: 'back-to-chats',
+            class: 'button',
             events: {
                 click: () => this.backToChats(),
             },
         });
-
-        setTimeout(() => this.handlerRender(), 0);
     }
 
     private backToChats(): void {
         console.log('back-to-chats');
-    }
-
-    handlerRender(): void {
-        document.querySelector('#back-to-chats').classList.add('button');
     }
 
     render() {

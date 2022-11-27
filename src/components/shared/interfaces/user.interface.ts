@@ -6,5 +6,4 @@ export interface IUser {
   nameInChat?: string;
   tel?: string;
   photo?: string;
-  isProfileEdit?: boolean;
 }

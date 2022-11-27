@@ -4,6 +4,7 @@ import {Button} from "../../shared/button";
 import {Input} from "../../shared/input/input";
 import {IChatMessage} from "../interfaces/chat-message.interface";
 import {ChatMessage} from "../chat-message/chat-message";
+import {chatArray} from '../const/chats';
 
 export class ChatList extends Block {
   constructor() {
@@ -12,39 +13,28 @@ export class ChatList extends Block {
 
   init() {
 
+    this.children.chat = chatArray.map((item: IChatMessage) => new ChatMessage(item));
+
     this.children.input = new Input({
       placeholder: 'search...',
       id: 'input',
+      class: 'input',
       type: 'text'
     })
 
     this.children.button = new Button({
       id: 'button',
+      class: 'button',
       label: 'profile',
       events: {
         click: () => this.onSubmit()
       },
     })
-
-    setTimeout(() => {
-      this.handlerTemplate();
-    }, 0)
   }
 
   private onSubmit(): void {
     console.log('search...')
   }
-
-  private handlerTemplate(): void {
-    document.querySelector('#button').classList.add('button');
-    document.querySelector('#input').classList.add('input');
-  }
-
-  public renderMessage(props: IChatMessage): void {
-    const message = new ChatMessage(props);
-    document.querySelector('.chats').prepend(message.getContent());
-  }
-
 
   render() {
     return this.compile(template, {...this.props});

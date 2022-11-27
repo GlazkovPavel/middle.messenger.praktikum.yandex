@@ -4,17 +4,18 @@ import {ProfileEditPassword} from "./profile-edit-password/profile-edit-password
 import Block from "../../utils/block";
 import {IUser} from '../shared/interfaces/user.interface';
 import {Button} from '../shared/button';
+import {IProfileState} from './interfaces/profile-state.interface';
 
-export class Profile extends Block<IUser> {
+export class Profile extends Block<IProfileState> {
 
   public isProfileEdit: boolean = true;
 
-  constructor(props: IUser) {
-    super(props);
+  constructor(props: IProfileState, user: IUser) {
+    super(props, user);
   }
 
   init() {
-    this.children.profileEdit = new ProfileEditUser(this.props);
+    this.children.profileEdit = new ProfileEditUser(this.user);
     this.children.profileEditPassword = new ProfileEditPassword();
     this.children.buttonEdit = new Button({
       events: {
@@ -38,7 +39,7 @@ export class Profile extends Block<IUser> {
       events: {
         click: () => this.onSave(),
       },
-      class: 'profile__button profile__button_type_save disabled',
+      class: 'profile__button profile__button_type_save',
       id: 'name',
       label: 'Сохранить',
       type: 'submit'
@@ -56,16 +57,26 @@ export class Profile extends Block<IUser> {
   }
 
   private onEditUser() {
-    console.log('onEditPassword');
+    this.setProps({
+      ...this.props,
+      isCanEdit: true,
+    })
   }
 
   private onEditPassword() {
-    console.log('onEditPassword');
-    this.setProps({...this.props, isProfileEdit: true})
+    this.setProps({
+      ...this.props,
+      isProfileEdit: false,
+      isCanEdit: true,
+    })
   }
 
   private onSave() {
-    console.log('onEditPassword');
+    this.setProps({
+      ...this.props,
+      isProfileEdit: true,
+      isCanEdit: false,
+    })
   }
 
   private onSignOut() {
@@ -77,76 +88,3 @@ export class Profile extends Block<IUser> {
   }
 
 }
-
-//
-//
-//
-//     const editButton = document.querySelector('.profile__button_type_edit');
-//     const saveButton = document.querySelector('.profile__button_type_save');
-//     const editPasswordButton = document.querySelector('.profile__button_type_edit-password');
-//     const savePasswordBtn = document.querySelector('.profile__button_type_save-edit');
-//     const formElement = document.querySelector('.profile__form');
-//     const formInput = formElement.querySelector('.profile__form-input');
-//     const formError = formElement.querySelector(`.${formInput.id}-error`);
-//
-//     const showError = (input, errorMessage) => {
-//         input.classList.add('form__input_type_error');
-//         formError.textContent = errorMessage;
-//         formError.classList.add('form__input-error_active');
-//     };
-//
-//     const hideError = (input) => {
-//         input.classList.remove('form__input_type_error');
-//         formError.classList.remove('form__input-error_active');
-//         formError.textContent = ''
-//     };
-//
-//     const checkInputValidity = () => {
-//         if (!formInput.validity.valid) {
-//             showError(formInput, formInput.validationMessage);
-//         } else {
-//             hideError(formInput);
-//         }
-//     };
-//
-//     formElement.addEventListener('submit', function (evt) {
-//         evt.preventDefault();
-//     });
-//
-//     formInput.addEventListener('input', function () {
-//         checkInputValidity();
-//     });
-//
-//     editButton.addEventListener('click', (evt) => {
-//         evt.preventDefault();
-//         saveButton.classList.remove('disabled');
-//         editButton.classList.add('disabled');
-//         editPasswordButton.classList.add('disabled');
-//     });
-//
-//     saveButton.addEventListener('click', (evt) => {
-//         evt.preventDefault();
-//         editButton.classList.remove('disabled');
-//         editPasswordButton.classList.remove('disabled');
-//         saveButton.classList.add('disabled');
-//     });
-//
-//     editPasswordButton.addEventListener('click', (evt) => {
-//         evt.preventDefault();
-//         const chatProfile = new ProfileEditPassword()
-//         editButton.classList.add('disabled');
-//         editPasswordButton.classList.add('disabled');
-//         profileForm.innerHTML = chatProfile.getContent().innerHTML;
-//         savePasswordBtn.classList.remove('disabled');
-//
-//     });
-//
-//     savePasswordBtn.addEventListener('click', (evt) => {
-//         evt.preventDefault();
-//         editButton.classList.remove('disabled');
-//         editPasswordButton.classList.remove('disabled');
-//         savePasswordBtn.classList.add('disabled');
-//         profileForm.innerHTML = profileEditUser.getContent().innerHTML;
-//     })
-//
-// })

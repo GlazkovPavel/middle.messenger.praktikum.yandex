@@ -29,9 +29,9 @@ export class Popup {
     }
 
     open() {
+        this._isOpenPopup = true;
         this.popupElement.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
-        this._isOpenPopup = true;
     };
 
     close() {

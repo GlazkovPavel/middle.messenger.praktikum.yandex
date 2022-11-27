@@ -1,8 +1,12 @@
-<div>
-    <div class="chat-header">
-        {{{ button }}}
-        {{{ input }}}
-    </div>
-    <div class="chats"></div>
+<section>
+  <div class="chat-header">
+    {{{ button }}}
+    {{{ input }}}
+  </div>
+  <div class="chats">
+    {{#each chat}}
+      {{{this}}}
+    {{/each}}
+  </div>
+</section>
 
-</div>

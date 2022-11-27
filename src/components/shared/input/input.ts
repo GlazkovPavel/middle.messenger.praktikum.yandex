@@ -4,7 +4,7 @@ import {IInputProps} from "../interfaces/input.interface";
 
 export class Input extends Block<IInputProps> {
   constructor(props: IInputProps) {
-    super(props);
+    super({class: 'container__form-input', ...props});
   }
 
   public setValue(value: string) {

@@ -2,13 +2,8 @@ import template from './sign-up.hbs';
 import Block from "../../../utils/block";
 import {Input} from "../../shared/input/input";
 import {Button} from "../../shared/button";
-import {ISignUp} from "../../shared/interfaces/sign-up.interface";
 
 export class SignUp extends Block {
-    private form: HTMLFormElement;
-    private password: HTMLInputElement;
-    private login: HTMLInputElement;
-    private inputs: NodeListOf<HTMLInputElement>;
 
     constructor() {
         super({});
@@ -36,7 +31,7 @@ export class SignUp extends Block {
             id: 'email',
             type: 'email',
             dataName: 'input',
-            placeholder: 'E-mail'
+            placeholder: 'E-mail',
         });
 
         this.children.login = new Input({
@@ -44,7 +39,7 @@ export class SignUp extends Block {
             id: 'login',
             type: 'text',
             dataName: 'input',
-            placeholder: 'Login'
+            placeholder: 'Login',
         });
 
         this.children.phone = new Input({
@@ -52,7 +47,7 @@ export class SignUp extends Block {
             id: 'phone',
             type: 'tel',
             dataName: 'input',
-            placeholder: 'Telephone'
+            placeholder: 'Telephone',
         });
 
         this.children.password = new Input({
@@ -60,7 +55,7 @@ export class SignUp extends Block {
             id: 'password',
             type: 'password',
             dataName: 'input',
-            placeholder: 'Password'
+            placeholder: 'Password',
         });
 
         this.children.cpassword = new Input({
@@ -68,40 +63,30 @@ export class SignUp extends Block {
             id: 'cpassword',
             type: 'cpassword',
             dataName: 'input',
-            placeholder: 'Repeat the password'
+            placeholder: 'Repeat the password',
         });
 
         this.children.button = new Button({
             label: 'Sign up',
             id: 'sign-up',
+            class: 'container__form-button',
             events:  {
               click: (): void => {
-                console.log('submitForm');
+                this.onSubmit()
               },
             },
         });
 
-        setTimeout(() => {
-            this.handlerForm();
-        }, 0);
     }
 
-    handlerForm(): void {
-        this.form = document.querySelector('.container__form');
-        this.inputs = this.form.querySelectorAll('[data-name]');
-        this.inputs.forEach((item: HTMLInputElement) => {
-            item.classList.add('container__form-input');
-        });
-        this.form.querySelector('#sign-up').classList.add('container__form-button');
-    }
+    private onSubmit(): void {
+      const values = Object
+        .values(this.children)
+        .filter(child => child instanceof Input)
+        .map((child) => ([(child as Input).getName(), (child as Input).getValue()]))
 
-    private onSubmit(evt: Event): void {
-      evt.preventDefault();
-        const submitForm: ISignUp = {};
-        this.inputs.forEach((item: HTMLInputElement) => {
-            submitForm[item.id as keyof ISignUp] = item.value;
-        });
-        console.log(submitForm);
+      const data = Object.fromEntries(values);
+      console.log(data);
     }
 
     render() {
