@@ -1,12 +1,33 @@
+
 {
-  "extends": "airbnb-base",
-  "root": true,
+  "env": {
+    "es6": true
+  },
+  "extends": "airbnb",
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
   "rules": {
-    "no-underscore-dangle": [1, { "allow": ["_id"] }],
-    "no-console": ["error", { "allow": ["log"] }],
-    "consistent-return": "off",
-    "func-names": 0,
-    "max-len": [2, 100],
-	  "quotes": ["error", "single", { "avoidEscape": true }]
+    "no-unused-vars": "off",
+    "no-underscore-dangle": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "no-shadow": "warn",
+    "no-param-reassign": "off",
+    "class-methods-use-this": "off",
+    "padded-blocks": "off",
+    "lines-between-class-members": "off",
+    "max-classes-per-file": 0,
+    "import/no-extraneous-dependencies": "off"
   }
 }

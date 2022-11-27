@@ -1,21 +1,13 @@
 import template from './profile-edit-user.hbs';
 import {Input} from "../../shared/input/input";
 import Block from '../../../utils/block';
+import {IUser} from '../../shared/interfaces/user.interface';
 
-interface IUser {
-  userEmail: string;
-  username: string;
-  name: string;
-  surname: string;
-  nameInChat: string;
-  tel: string;
-}
 export class ProfileEditUser extends Block {
-  private user: any;
+
 
   constructor(user: IUser) {
-    super({});
-    this.user = user;
+    super({}, user);
   }
 
   init() {

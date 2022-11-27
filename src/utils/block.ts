@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import {EventBus} from "./event-bus";
+import {IUser} from '../components/shared/interfaces/user.interface';
 
 class Block<P extends Record<string, any> = any> {
     static EVENTS = {
@@ -11,23 +12,20 @@ class Block<P extends Record<string, any> = any> {
 
     public id = nanoid(8);
     protected props: P;
+	  protected user: IUser;
     public children: Record<string, Block | Block[]>;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
 
-    constructor(propsWithChildren: P) {
-        const eventBus = new EventBus();
-
-        const {props, children} = this._getChildrenAndProps(propsWithChildren);
-
-        this.children = children;
-        this.props = this._makePropsProxy(props);
-
-        this.eventBus = () => eventBus;
-
-        this._registerEvents(eventBus);
-
-        eventBus.emit(Block.EVENTS.INIT);
+    constructor(propsWithChildren: P, user?: IUser) {
+      const eventBus = new EventBus();
+      this.user = user;
+      const {props, children} = this._getChildrenAndProps(propsWithChildren);
+      this.children = children;
+      this.props = this._makePropsProxy(props);
+      this.eventBus = () => eventBus;
+      this._registerEvents(eventBus);
+      eventBus.emit(Block.EVENTS.INIT);
     }
 
     _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block | Block[]> } {
@@ -47,7 +45,7 @@ class Block<P extends Record<string, any> = any> {
         return {props: props as P, children};
     }
 
-    _addEvents() {
+    _addEvents(): void {
         const {events = {}} = this.props as P & { events: Record<string, () => void> };
 
         Object.keys(events).forEach(eventName => {
@@ -55,30 +53,28 @@ class Block<P extends Record<string, any> = any> {
         });
     }
 
-    _registerEvents(eventBus: EventBus) {
+    _registerEvents(eventBus: EventBus): void {
         eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
-    private _init() {
+    private _init(): void {
         this.init();
 
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    protected init() {
-    }
+    protected init(): void {}
 
-    _componentDidMount() {
+    _componentDidMount(): void {
         this.componentDidMount();
     }
 
-    componentDidMount() {
-    }
+    componentDidMount(): void {}
 
-    public dispatchComponentDidMount() {
+    public dispatchComponentDidMount(): void {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
         Object.values(this.children).forEach(child => {
@@ -170,7 +166,7 @@ class Block<P extends Record<string, any> = any> {
         return new DocumentFragment();
     }
 
-    getContent() {
+    getContent(): HTMLElement | null  {
         return this.element;
     }
 
@@ -195,6 +191,13 @@ class Block<P extends Record<string, any> = any> {
             }
         });
     }
+  public show() {
+    this.getContent().style.display = 'flex';
+  }
+
+  public hide() {
+    this.getContent().style.display = 'none';
+  }
 }
 
 export default Block;

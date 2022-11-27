@@ -74,8 +74,10 @@ export class SignUp extends Block {
         this.children.button = new Button({
             label: 'Sign up',
             id: 'sign-up',
-            events: {
-                click: () => this.onSubmit(),
+            events:  {
+              click: (): void => {
+                console.log('submitForm');
+              },
             },
         });
 
@@ -93,7 +95,8 @@ export class SignUp extends Block {
         this.form.querySelector('#sign-up').classList.add('container__form-button');
     }
 
-    private onSubmit(): void {
+    private onSubmit(evt: Event): void {
+      evt.preventDefault();
         const submitForm: ISignUp = {};
         this.inputs.forEach((item: HTMLInputElement) => {
             submitForm[item.id as keyof ISignUp] = item.value;

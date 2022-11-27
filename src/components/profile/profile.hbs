@@ -1,0 +1,33 @@
+<div>
+  <div class="container__profile">
+  <button class="button-back"></button>
+  <div class="profile-main">
+    <div class="avatar">
+      <div class="avatar__photo-container">
+        <figure class="avatar__photo-edit"></figure>
+        <img class="avatar__photo" src="{{photo}}"  alt="avatar">
+      </div>
+      <div class="avatar__name">Hi, {{name}}</div>
+    </div>
+    <div class="profile-form">
+      {{#if isProfileEdit}}
+       {{{ profileEdit }}}
+       {{else}}
+       {{{ profileEditPassword }}}
+       {{/if}}
+    </div>
+    <div class="button__container">
+      {{{ buttonEdit }}}
+      {{{ buttonEditPassword }}}
+      {{{ buttonSave }}}
+      {{{ buttonSignOut }}}
+<!--      <button class="profile__button profile__button_type_edit">Изменить данные</button>-->
+<!--      <button class="profile__button profile__button_type_edit-password">Изменить пароль</button>-->
+<!--      <button class="profile__button profile__button_type_save disabled">Сохранить</button>-->
+<!--      <button class="profile__button  profile__button_type_save-edit disabled" >Сохранить</button>-->
+<!--      <button class="profile__button profile__button_type_signout">Выйти из аккаунта</button>-->
+    </div>
+
+  </div>
+</div>
+</div>

@@ -14,10 +14,10 @@ export class ProfileEditPassword extends Block {
         name: "email",
         class: "profile__form-input",
         minlength: "8",
-        id: "old-password-input"
+        id: "old-password-input",
       })
       this.children.inputNewPassword = new Input({
-        placeholder: "old password",
+        placeholder: "new password",
         type: "password",
         name: "email",
         class: "profile__form-input",
@@ -25,7 +25,7 @@ export class ProfileEditPassword extends Block {
         id: "new-password-input"
       })
       this.children.inputNewCPassword = new Input({
-        placeholder: "old password",
+        placeholder: "new password",
         type: "password",
         name: "email",
         class: "profile__form-input",
