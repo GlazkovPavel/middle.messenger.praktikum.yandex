@@ -31,10 +31,10 @@ export class Chat extends Block<IChat> {
     });
 
     this.children.inputMessage = new Input({
-      id: 'input-message',
-      name: 'input-message',
+      id: 'inputMessage',
+      name: 'inputMessage',
       type: 'text',
-      dataName: 'input-message',
+      dataName: 'inputMessage',
       placeholder: 'Message',
       class: 'form__input',
     })

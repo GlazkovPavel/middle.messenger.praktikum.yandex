@@ -63,7 +63,7 @@ export class ProfileEditUser extends Block {
 
     this.children.tel = new Input({
       type: "tel",
-      name: "tel",
+      name: "phone",
       class: "profile__form-input",
       required: "required",
       minlength: "2",

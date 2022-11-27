@@ -1,10 +1,15 @@
 import template from './input.hbs';
 import Block from "../../../utils/block";
 import {IInputProps} from "../interfaces/input.interface";
+import {validate} from '../../../utils/validate';
 
 export class Input extends Block<IInputProps> {
   constructor(props: IInputProps) {
-    super({class: 'container__form-input', ...props});
+    const events = {
+      focusin: (e: Event): void => this.onFocus(e),
+      focusout: (e: Event): void => this.onBlur(e),
+    };
+    super({class: 'container__form-input', value: '', events,  ...props});
   }
 
   public setValue(value: string) {
@@ -18,6 +23,14 @@ export class Input extends Block<IInputProps> {
   public getValue() {
     return (this.element as HTMLInputElement).value;
   }
+
+  public onFocus = (e: Event): void => {
+    validate(e, this.element!, ".input-error");
+  };
+
+  public onBlur = (e: Event): void => {
+    validate(e, this.element!, ".input-error");
+  };
 
   render() {
     return this.compile(template, { ...this.props });

@@ -6,4 +6,8 @@ export interface IInputProps extends ITypeName{
     minlength?: string;
     value?: string;
     required?: string;
+    events?: {
+      focusin: (e: Event) => void;
+      focusout: (e: Event) => void;
+    };
 }
