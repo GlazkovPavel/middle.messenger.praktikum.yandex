@@ -11,7 +11,7 @@ import {IProfileState} from './components/profile/interfaces/profile-state.inter
 
 
 //const signIn = new SignIn();
-const signUp = new SignUp();
+//const signUp = new SignUp();
 //const notFound = new NotFound();
 //const serverError = new ServerError();
 // const chat = new Chat({
@@ -52,7 +52,7 @@ const state: IProfileState = {
   avatar: 'https://sun9-north.userapi.com/sun9-88/s/v1/if1/Ut6lK2K0J5PgfQ315J18BI2BIryVYtizUK6IXM2HMwUbpF2cMbObnEzUNcncenN2cd0ZN9en.jpg?size=2160x2160&quality=96&type=album',
 }
 
-//const profile = new Profile(state, user);
+const profile = new Profile(state, user);
 //root.innerHTML = profile.getContent().innerHTML;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderPage() {
     const root = document.querySelector('#root')
 
-    root.append(signUp.getContent());
+    root.append(profile.getContent());
    // chat.renderChatList();
   }
 

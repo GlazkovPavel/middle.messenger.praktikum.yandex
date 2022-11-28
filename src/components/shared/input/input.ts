@@ -24,12 +24,12 @@ export class Input extends Block<IInputProps> {
     return (this.element as HTMLInputElement).value;
   }
 
-  public onFocus = (e: Event): void => {
-    validate(e, this.element!, ".input-error");
+  public onFocus = (evt: Event): void => {
+    validate(evt);
   };
 
-  public onBlur = (e: Event): void => {
-    validate(e, this.element!, ".input-error");
+  public onBlur = (evt: Event): void => {
+    validate(evt);
   };
 
   render() {
