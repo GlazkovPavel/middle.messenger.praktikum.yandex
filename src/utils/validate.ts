@@ -11,11 +11,11 @@ export const validate = (
 
   if (isValid) {
     if (event.type === "focusout") {
-      error.textContent = "";
-      error.classList.remove('error');
+      error!.textContent = "";
+      error!.classList.remove('error');
     }
   } else {
-    error.classList.add('error');
-    error.textContent = patterns[input.name].error;
+    error!.classList.add('error');
+    error!.textContent = patterns[input.name].error;
   }
 };

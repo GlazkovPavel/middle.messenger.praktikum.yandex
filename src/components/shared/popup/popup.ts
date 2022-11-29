@@ -3,7 +3,7 @@ import {escape} from "../../../const/const";
 export class Popup {
 
     _isOpenPopup = false;
-    private popupElement: HTMLElement;
+    private popupElement: HTMLElement | null;
 
     constructor(popupSelector: string) {
         this.popupElement = document.querySelector(popupSelector);
@@ -30,12 +30,12 @@ export class Popup {
 
     open() {
         this._isOpenPopup = true;
-        this.popupElement.classList.add('popup_opened');
+        this.popupElement!.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
     };
 
     close() {
-        this.popupElement.classList.remove('popup_opened');
+        this.popupElement!.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
         document.removeEventListener('mousedown', this._handelMouseDownClose);
         this._isOpenPopup = false;

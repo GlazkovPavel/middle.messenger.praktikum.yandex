@@ -3,15 +3,7 @@ import template from './sign-in.hbs';
 import {Input} from "../../shared/input/input";
 import {Button} from "../../shared/button";
 
-interface ISubmitForm {
-    password: string;
-    login: string;
-}
 export class SignIn extends Block {
-
-    private form: HTMLFormElement;
-    private password: HTMLInputElement;
-    private login: HTMLInputElement;
 
     constructor() {
         super({});

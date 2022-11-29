@@ -6,7 +6,7 @@ import {IUser} from '../../shared/interfaces/user.interface';
 export class ProfileEditUser extends Block {
 
 
-  constructor(user: IUser) {
+  constructor(user: IUser | undefined) {
     super({}, user);
   }
 
@@ -18,7 +18,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "4",
       id: "email-input",
-      value: `${this.user.userEmail}`
+      value: `${this.user!.userEmail}`
     });
 
     this.children.username = new Input({
@@ -28,7 +28,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "username-input",
-      value: `${this.user.username}`
+      value: `${this.user!.username}`
     });
 
     this.children.name = new Input({
@@ -38,7 +38,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "name-input",
-      value: `${this.user.name}`
+      value: `${this.user!.name}`
     });
 
     this.children.surname = new Input({
@@ -48,7 +48,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "surname-input",
-      value: `${this.user.surname}`
+      value: `${this.user!.surname}`
     });
 
     this.children.nameInChat = new Input({
@@ -58,7 +58,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "nameInChat-input",
-      value: `${this.user.nameInChat}`
+      value: `${this.user!.nameInChat}`
     });
 
     this.children.tel = new Input({
@@ -68,7 +68,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "tel-input",
-      value: `${this.user.tel}`
+      value: `${this.user!.tel}`
     });
 
   }

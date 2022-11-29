@@ -12,7 +12,7 @@ class Block<P extends Record<string, any> = any> {
 
     public id = nanoid(8);
     protected props: P;
-	  protected user: IUser;
+	  protected user: IUser | undefined;
     public children: Record<string, Block | Block[]>;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
@@ -92,7 +92,7 @@ class Block<P extends Record<string, any> = any> {
         }
     }
 
-    protected componentDidUpdate(oldProps: P, newProps: P) {
+    protected componentDidUpdate(_oldProps: P, _newProps: P) {
         return true;
     }
 
@@ -192,11 +192,11 @@ class Block<P extends Record<string, any> = any> {
         });
     }
   public show() {
-    this.getContent().style.display = 'flex';
+    this.getContent()!.style.display = 'flex';
   }
 
   public hide() {
-    this.getContent().style.display = 'none';
+    this.getContent()!.style.display = 'none';
   }
 }
 

@@ -1,6 +1,5 @@
 import template from './chat-list.hbs';
 import Block from "../../../utils/block";
-import {Button} from "../../shared/button";
 import {Input} from "../../shared/input/input";
 import {IChatMessage} from "../interfaces/chat-message.interface";
 import {ChatMessage} from "../chat-message/chat-message";
@@ -21,19 +20,6 @@ export class ChatList extends Block {
       class: 'input',
       type: 'text'
     })
-
-    this.children.button = new Button({
-      id: 'button',
-      class: 'button',
-      label: 'profile',
-      events: {
-        click: () => this.onSubmit()
-      },
-    })
-  }
-
-  private onSubmit(): void {
-    console.log('search...')
   }
 
   render() {
