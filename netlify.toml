@@ -1,3 +1,2 @@
-[[build]]
-publish = "dist"
+[build]
 command = "npm run build"
