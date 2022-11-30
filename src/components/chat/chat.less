@@ -22,8 +22,8 @@
 
   .space {
     flex: 1;
-    border-bottom: 1px solid #EAEAEA;
-    border-top: 1px solid #EAEAEA;
+    border-bottom: 1px solid @colorWhiteSmoke;
+    border-top: 1px solid @colorWhiteSmoke;
     display: flex;
     justify-content: center;
 
@@ -31,7 +31,7 @@
       font-weight: 500;
       font-size: 12px;
       line-height: 12px;
-      color: #999999;
+      color: @colorGrey;
       align-self: center;
     }
   }
@@ -57,7 +57,7 @@
       font-weight: 600;
       font-size: 13px;
       line-height: 13px;
-      color: #1E1E1E;
+      color: @colorBlack;
       margin-left: @part10px;
     }
 
@@ -70,7 +70,7 @@
       transition: background .2s ease-in;
       border-radius: 50%;
       &:hover {
-        background-color: rgba(185, 184, 184, 0.69);
+        background-color: @colorGrey70;
         .menu {
           background: url("/static/images/menu-blue.svg");
           background-repeat: no-repeat;
@@ -126,7 +126,7 @@
         border: none;
         outline: none;
         padding-left: 8px;
-        background-color: #EFEFEF;
+        background-color: @colorWhiteSmoke;
         height: 32px;
         margin-right: @part10px;
 
@@ -149,7 +149,7 @@
   .popup {
     width: 162px;
     height: 128px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0 6px @colorBlackShadow;
     border-radius: 12px;
     position: absolute;
     padding: @part10px;
@@ -167,7 +167,7 @@
       width: 162px;
       &:hover {
         cursor: pointer;
-        background-color: rgba(30, 30, 30, 0.1);
+        background-color: @colorBlackShadow;
       }
 
       &:first-child {
@@ -191,7 +191,7 @@
       font-weight: 500;
       font-size: 12px;
       line-height: 14px;
-      color: #1E1E1E;
+      color: @colorBlack;
       margin-left: 15px;
       background: none;
     }

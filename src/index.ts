@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
   const user = {
-    userEmail: "gg@gg.gg",
+    email: "gg@gg.gg",
     username: 'usernamePasha',
-    surname: 'Glazkov',
-    nameInChat: 'PG',
-    tel: '8-999-9965432',
-    name: 'Pavel',
+    second_name: 'Glazkov',
+    display_name: 'PG',
+    phone: '8-999-9965432',
+    first_name: 'Pavel',
     photo: 'https://sun9-north.userapi.com/sun9-88/s/v1/if1/Ut6lK2K0J5PgfQ315J18BI2BIryVYtizUK6IXM2HMwUbpF2cMbObnEzUNcncenN2cd0ZN9en.jpg?size=2160x2160&quality=96&type=album',
   }
 

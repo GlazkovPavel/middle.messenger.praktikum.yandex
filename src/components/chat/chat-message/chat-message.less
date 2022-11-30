@@ -3,8 +3,8 @@
   display: flex;
   align-items: center;
   height: 7 * @part10px;
-  border-bottom: 1px solid #EAEAEA;
-  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid @colorWhiteSmoke;
+  border-top: 1px solid @colorWhiteSmoke;
   padding: @part10px;
 
   .photo {
@@ -23,7 +23,7 @@
   }
 
   .user-name {
-    color: #1E1E1E;
+    color: @colorBlack;
     font-weight: 600;
     font-size: 13px;
     line-height: 13px;
@@ -35,7 +35,7 @@
   }
 
   .my-chat {
-    color: #1E1E1E;
+    color: @colorBlack;
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
@@ -46,7 +46,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    color: #999999;
+    color: @colorGrey;
   }
 
   .chat-info {
@@ -60,12 +60,12 @@
       font-weight: 500;
       font-size: 9px;
       line-height: 13px;
-      color: #999999;
+      color: @colorGrey;
     }
 
     .total-message {
       background-color: @colorBlue;
-      color: white;
+      color: @colorWhite;
       border-radius: 50%;
       font-weight: 500;
       font-size: 11px;
