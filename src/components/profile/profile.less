@@ -8,13 +8,13 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 16px;
-    color: #1E1E1E;
+    color: @colorBlack;
     text-align: center;
     margin-top: 2 * @part10px;
 
   }
 
-  .button {
+  .button-back {
     height: 100%;
     width: 7 * @part10px;
     background: url("/static/images/go-to-back.svg");
@@ -22,13 +22,13 @@
     border: none;
     outline: none;
     align-self: center;
-    background-color: #FBFBFB;
+    background-color: @colorWhiteSmoke;
     background-repeat: no-repeat;
     background-position: center;
     transition: background-color .3s ease;
 
     &:hover {
-      background-color: rgba(180, 180, 180, 0.8);
+      background-color: @colorGrey70;
     }
   }
 
@@ -84,9 +84,6 @@
     transition: .1s linear;
   }
 
-  .profile-form {
-  }
-
   .button__container {
     display: flex;
     flex-direction: column;
@@ -118,14 +115,14 @@
 
     .profile__button_type_save {
       width: 100%;
-      background-color: #3456F3;
+      background-color: @colorBlue;
       border-radius: 3px;
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
       line-height: 17px;
       text-align: center;
-      color: #FFFFFF;
+      color: @colorWhite;
       transition: opacity 0.3s ease-in-out;
     }
 
@@ -156,7 +153,7 @@
       font-weight: 500;
       font-size: 13px;
       line-height: 16px;
-      color: #d92b58;
+      color: @colorRed70;
       align-self: center;
       transition: opacity 0.3s;
     }
@@ -169,5 +166,70 @@
 
 
 }
+.user-profile {
+  margin: 0 auto;
+}
+  .profile__form {
+	  margin: 90px auto;
+	  width: 450px;
+  }
+
+.profile__form.password {
+  padding: 65px 0 104px 0;
+}
+
+  .profile__fields{
+    border: none;
+    padding: 0;
+  }
+
+  .profile__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+  }
+  .profile__form-input {
+    text-align: right;
+    border: none;
+    background: none;
+    font-size: 11px;
+    line-height: 13px;
+    height: 20px;
+    width: 80%;
+    margin-left: auto;
+  }
+  .profile__form-input-name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  hr{
+    color: @colorWhiteSmoke;
+    margin: 10px 0;
+  }
+
+  .profile__message {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    min-height: 13px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form__input-error {
+    color: @colorRed;
+    font-size: 8px;
+  }
+
+  .profile__message_type_error {
+    color: @colorRed70;
+  }
+
+
 
 
