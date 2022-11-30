@@ -30,11 +30,10 @@ export class Chat extends Block<IChat> {
       }
     });
 
-    this.children.inputMessage = new Input({
-      id: 'inputMessage',
-      name: 'inputMessage',
+    this.children.message = new Input({
+      id: 'message',
+      name: 'message',
       type: 'text',
-      dataName: 'inputMessage',
       placeholder: 'Message',
       class: 'form__input',
     })

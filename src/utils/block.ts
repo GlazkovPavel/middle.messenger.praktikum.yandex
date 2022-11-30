@@ -53,6 +53,18 @@ class Block<P extends Record<string, any> = any> {
         });
     }
 
+  private _removeEvents() {
+    const { events } = this.props;
+
+    if (!events || !this._element) {
+      return;
+    }
+
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element!.removeEventListener(event, listener);
+    });
+  }
+
     _registerEvents(eventBus: EventBus): void {
         eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -114,6 +126,7 @@ class Block<P extends Record<string, any> = any> {
         const newElement = fragment.firstElementChild as HTMLElement;
 
         if (this._element && newElement) {
+            this._removeEvents();
             this._element.replaceWith(newElement);
         }
 

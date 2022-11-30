@@ -10,18 +10,16 @@ export class SignUp extends Block {
     }
 
     init() {
-        this.children.name = new Input({
-            name: 'name',
-            id: 'name',
-            dataName: 'input',
+        this.children.firstName = new Input({
+            name: 'first_name',
+            id: 'first_name',
             type: 'text',
             placeholder: 'Name'
         });
 
-        this.children.surname = new Input({
-            name: 'surname',
-            id: 'surname',
-            dataName: 'input',
+        this.children.secondName = new Input({
+            name: 'second_name',
+            id: 'second_name',
             type: 'text',
             placeholder: 'Surname'
         });
@@ -30,7 +28,6 @@ export class SignUp extends Block {
             name: 'email',
             id: 'email',
             type: 'email',
-            dataName: 'input',
             placeholder: 'E-mail',
         });
 
@@ -38,7 +35,6 @@ export class SignUp extends Block {
             name: 'login',
             id: 'login',
             type: 'text',
-            dataName: 'input',
             placeholder: 'Login',
         });
 
@@ -46,7 +42,6 @@ export class SignUp extends Block {
             name: 'phone',
             id: 'phone',
             type: 'tel',
-            dataName: 'input',
             placeholder: 'Telephone',
         });
 
@@ -54,7 +49,6 @@ export class SignUp extends Block {
             name: 'password',
             id: 'password',
             type: 'password',
-            dataName: 'input',
             placeholder: 'Password',
         });
 
@@ -62,7 +56,6 @@ export class SignUp extends Block {
             name: 'cpassword',
             id: 'cpassword',
             type: 'cpassword',
-            dataName: 'input',
             placeholder: 'Repeat the password',
         });
 

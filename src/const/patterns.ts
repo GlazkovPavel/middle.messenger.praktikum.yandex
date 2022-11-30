@@ -9,7 +9,7 @@ export const patterns: Record<string, IPattern> = {
     error: "please use something@any.com",
     regExp: /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})$/,
   },
-  name: {
+  first_name: {
     error: "2-15 symbols from capital letter",
     regExp: /^[А-ЯA-Z]{1}[а-яa-z0-9_-]{2,15}$/,
   },
@@ -17,7 +17,7 @@ export const patterns: Record<string, IPattern> = {
     error: "2-15 symbols from capital letter",
     regExp: /^[А-ЯA-Z]{1}[а-яa-z0-9_-]{2,15}$/,
   },
-  surname: {
+  second_name: {
     error: "2-15 symbols from capital letter",
     regExp: /^[А-ЯA-Z]{1}[а-яa-z0-9_-]{2,15}$/,
   },
@@ -25,7 +25,7 @@ export const patterns: Record<string, IPattern> = {
     error: "10-15 numbers",
     regExp: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,9}$/,
   },
-  nameInChat: {
+  display_name: {
     error: "2-15 symbols",
     regExp: /^[а-яa-zА-ЯA-Z0-9_-]{2,15}$/,
   },
@@ -37,7 +37,7 @@ export const patterns: Record<string, IPattern> = {
     error: "8-40 symbols (at least 1 number, 1 capital)",
     regExp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40})$/,
   },
-  inputMessage: {
+  message: {
     error: "write something",
     regExp: /(.|\s)*\S(.|\s)*$/,
   },

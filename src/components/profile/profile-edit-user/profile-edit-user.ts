@@ -18,7 +18,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "4",
       id: "email-input",
-      value: `${this.user!.userEmail}`
+      value: `${this.user!.email}`
     });
 
     this.children.username = new Input({
@@ -31,44 +31,44 @@ export class ProfileEditUser extends Block {
       value: `${this.user!.username}`
     });
 
-    this.children.name = new Input({
+    this.children.firstName = new Input({
       type: "text",
-      name: "name",
+      name: "first_name",
       class: "profile__form-input",
       required: "required",
       minlength: "2",
-      id: "name-input",
-      value: `${this.user!.name}`
+      id: "first_name-input",
+      value: `${this.user!.first_name}`
     });
 
-    this.children.surname = new Input({
+    this.children.secondName = new Input({
       type: "text",
-      name: "surname",
+      name: "second_name",
       class: "profile__form-input",
       required: "required",
       minlength: "2",
-      id: "surname-input",
-      value: `${this.user!.surname}`
+      id: "second_name-input",
+      value: `${this.user!.second_name}`
     });
 
-    this.children.nameInChat = new Input({
+    this.children.displayName = new Input({
       type: "text",
-      name: "nameInChat",
+      name: "display_name",
       class: "profile__form-input",
       required: "required",
       minlength: "2",
-      id: "nameInChat-input",
-      value: `${this.user!.nameInChat}`
+      id: "display_name-input",
+      value: `${this.user!.display_name}`
     });
 
-    this.children.tel = new Input({
+    this.children.phone = new Input({
       type: "tel",
       name: "phone",
       class: "profile__form-input",
       required: "required",
       minlength: "2",
-      id: "tel-input",
-      value: `${this.user!.tel}`
+      id: "phone-input",
+      value: `${this.user!.phone}`
     });
 
   }

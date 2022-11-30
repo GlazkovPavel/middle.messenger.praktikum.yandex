@@ -1,9 +1,9 @@
 export interface IUser {
-  userEmail?: string;
+  email?: string;
   username?: string;
-  name?: string;
-  surname?: string;
-  nameInChat?: string;
-  tel?: string;
+  first_name?: string;
+  second_name?: string;
+  display_name?: string;
+  phone?: string;
   photo?: string;
 }
