@@ -1,0 +1,20 @@
+<div class="container">
+    <p class="container__title">Enter</p>
+    <form class="container__form" name="myForm">
+        <div class="container__form-type">
+            <label class="container__form-label" for="login">login</label>
+            {{{ login }}}
+          <span id="login-error" class="input-error"></span>
+        </div>
+        <div class="container__form-type">
+            <label class="container__form-label" for="password">password</label>
+            {{{ password }}}
+          <span id="password-error" class="input-error"></span>
+        </div>
+        {{{ button }}}
+    </form>
+    <a href="/signUp" class="container__button sign-up router">Sign-Up</a>
+    <a href="/chat" class="container__button sign-up router">В чат</a>
+
+
+</div>

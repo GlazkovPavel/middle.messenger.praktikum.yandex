@@ -1,0 +1,51 @@
+@colorBlue: #3369F3;
+@colorWhite: white;
+@colorGrey: #999999;
+@colorGrey70: rgba(185, 184, 184, 0.7);
+@colorWhiteSmoke: #EAEAEA;
+@colorBlack: #1E1E1E;
+@colorBlackShadow: rgba(0, 0, 0, 0.14);
+@colorRed70: #d92b58;
+@colorRed: #ff0000;
+
+@part10px: 10px;
+* {
+  font-family: 'Inter', 'Arial', 'Helvetica', 'sans-serif';
+  background-color: white;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@import "components/index";
+
+
+.page {
+  display: flex;
+}
+
+.toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.input__container {
+  width: 100%;
+}
+
+.input-error {
+  color: red;
+  font-size: 8px;
+  margin: 0 0 11px;
+  line-height: 8px;
+  height: 8px;
+  display: none;
+}
+.input-error.error {
+  display: block;
+}
