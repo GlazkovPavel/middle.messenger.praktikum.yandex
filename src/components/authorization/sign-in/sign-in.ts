@@ -2,6 +2,7 @@ import Block from "../../../utils/block";
 import template from './sign-in.hbs';
 import {Input} from "../../shared/input/input";
 import {Button} from "../../shared/button";
+import router from '../../../utils/router';
 
 export class SignIn extends Block {
 
@@ -31,8 +32,20 @@ export class SignIn extends Block {
                 click: () => this.onSubmit()
             },
         });
+
+      this.children.buttonSignUp = new Button({
+        label: 'Sign-Up',
+        id: 'sign-in',
+        class: 'container__button sign-up router',
+        events: {
+          click: () => this.goToSignUp()
+        },
+      });
     };
 
+  private goToSignUp(): void {
+    router.go('/sign-up')
+  }
 
   private onSubmit(): void {
     const values = Object

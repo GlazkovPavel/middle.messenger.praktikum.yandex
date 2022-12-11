@@ -1,5 +1,6 @@
 import {Methods} from '../components/shared/enums/methods.enum';
 import {IHttpRequest} from '../components/shared/interfaces/http-request.interface';
+import {PATH} from '../api/const-api';
 
 export function queryStringify(data: any) {
   if (typeof data !== "object") {
@@ -15,12 +16,20 @@ export function queryStringify(data: any) {
 }
 
 export class HTTPTransport {
+
+  static API_URL = PATH.baseURL;
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
+
   get(
     url: string,
     options: Omit<IHttpRequest, "method">
   ): Promise<XMLHttpRequest | unknown> {
     return this.request(
-      url,
+      this.endpoint + url,
       { ...options, method: Methods.GET },
       options.timeout
     );
@@ -31,7 +40,7 @@ export class HTTPTransport {
     options: Omit<IHttpRequest, "method">
   ): Promise<XMLHttpRequest | unknown> {
     return this.request(
-      url,
+      this.endpoint + url,
       { ...options, method: Methods.POST },
       options.timeout
     );
@@ -64,7 +73,7 @@ export class HTTPTransport {
     options: IHttpRequest,
     timeout = 5000
   ): Promise<XMLHttpRequest | unknown> {
-    const { headers = {}, method, data } = options;
+    const { headers = {'content-type': 'application/json'}, method, data } = options;
 
     return new Promise(function (resolve, reject) {
       if (!method) {
@@ -94,7 +103,16 @@ export class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(JSON.stringify(
+          {
+            first_name: "Артурт",
+            second_name: "Морган",
+            login: `a.morgan`,
+            email: `a.morgan@rdr2.com`,
+            phone: "+71234567890",
+            password: "p@ssw0rd",
+          }
+        ));
       }
     });
   }

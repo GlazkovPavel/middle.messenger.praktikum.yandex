@@ -52,12 +52,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // const notFound = new NotFound();
   // const serverError = new ServerError();
 
-  Router.use('/sign-in', SignIn)
+  Router.use('/', SignIn)
     .use('/sign-up', SignUp)
     .use('not-found', NotFound)
     .use('server-error', ServerError)
-    .use('/chat', Chat)
-    .use('/profile', Profile)
+    .use('/messenger', Chat)
+    .use('/settings', Profile)
   Router.start();
 
 
