@@ -7,12 +7,16 @@ export class AuthAPI extends BaseAPI {
     super("/auth");
   }
 
-  signin(data: ISubmitForm) {
+  public signin(data: ISubmitForm) {
     return this.http.post("/signin", {data});
   }
 
-  signup(data: ISignUp) {
+  public signup(data: ISignUp) {
     return this.http.post("/signup", {data});
+  }
+
+  public read() {
+    return this.http.get("/user", {});
   }
 
   logout() {
@@ -22,5 +26,4 @@ export class AuthAPI extends BaseAPI {
   create = undefined;
   update = undefined;
   delete = undefined;
-  read = undefined;
 }

@@ -3,6 +3,7 @@ import template from './sign-in.hbs';
 import {Input} from "../../shared/input/input";
 import {Button} from "../../shared/button";
 import router from '../../../utils/router';
+import authController from "../../../controllers/auth-controller";
 
 export class SignIn extends Block {
 
@@ -55,6 +56,7 @@ export class SignIn extends Block {
 
     const data = Object.fromEntries(values);
     console.log(data);
+    authController.signin(data).then(r => console.log(r));
   }
 
     render() {

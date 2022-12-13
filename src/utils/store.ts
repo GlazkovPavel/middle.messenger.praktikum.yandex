@@ -1,0 +1,17 @@
+import {EventBus} from "./event-bus";
+import {set} from "./helpers";
+import {StoreEvents} from "../components/shared/enums/store.enum";
+
+export class Store extends EventBus {
+  private state: any = {};
+
+  public set(path: string, value: unknown) {
+    set(this.state, path, value);
+
+    this.emit(StoreEvents.Updated);
+  };
+
+  public getState() {
+    return this.state;
+  }
+}

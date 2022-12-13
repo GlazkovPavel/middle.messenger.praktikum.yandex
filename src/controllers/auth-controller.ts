@@ -11,8 +11,8 @@ export class AuthController {
   async signin(data: ISignUp) {
     try {
       await loginApi.signin(data);
-
-      router.go("/profile");
+      await this.fetchUser();
+      router.go("/messenger");
     } catch (e: any) {
       console.error(e);
     }
@@ -22,19 +22,21 @@ export class AuthController {
     try {
       await loginApi.signup(data);
 
-      //await this.fetchUser();
+      await this.fetchUser();
 
-      router.go("/profile");
+      router.go("/messenger");
     } catch (e: any) {
       console.error(e.message);
     }
   }
 
-  // async fetchUser() {
-  //   const user = await this.api.read();
-  //
-  //   store.set("user", user);
-  // }
+  async fetchUser() {
+    const user = await loginApi.read();
+
+    console.log(user);
+
+    store.set("user", user);
+  }
 
   // async logout() {
   //   try {

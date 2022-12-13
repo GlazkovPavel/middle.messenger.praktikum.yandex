@@ -1,6 +1,6 @@
 import Block from './block';
 import {render} from './render';
-import {isEqual} from './helpers';
+import {isEqualString} from './helpers';
 import {NotFound} from '../components/error-page/not-found/not-found';
 
 export class Route {
@@ -18,7 +18,7 @@ export class Route {
   }
 
   public match(pathname: string) {
-    return isEqual(pathname, this._pathname);
+    return isEqualString(pathname, this._pathname);
   }
 
   public render() {

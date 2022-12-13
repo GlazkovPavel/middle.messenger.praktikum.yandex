@@ -2,7 +2,7 @@ export type Indexed<T = any> = {
   [key in string]: T;
 };
 
-export function isEqual(lhs: string, rhs: string): boolean {
+export function isEqualString(lhs: string, rhs: string): boolean {
   return lhs === rhs;
 }
 

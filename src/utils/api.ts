@@ -99,20 +99,13 @@ export class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
 
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(
-          {
-            first_name: "Артурт",
-            second_name: "Морган",
-            login: `a.morgan`,
-            email: `a.morgan@rdr2.com`,
-            phone: "+71234567890",
-            password: "p@ssw0rd",
-          }
-        ));
+        xhr.send(JSON.stringify(data));
       }
     });
   }
