@@ -2,10 +2,7 @@ import template from './sign-up.hbs';
 import Block from "../../../utils/block";
 import {Input} from "../../shared/input/input";
 import {Button} from "../../shared/button";
-import {AuthController} from '../../../controllers/auth-controller';
-
-const authController = new AuthController();
-
+import authController from "../../../controllers/auth-controller";
 export class SignUp extends Block {
 
     constructor() {

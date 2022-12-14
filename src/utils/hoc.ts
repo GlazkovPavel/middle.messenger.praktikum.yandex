@@ -5,30 +5,27 @@ import isEqual from "./isEqual";
 import store from './store';
 
 
-export function connect(mapStateToProps: (state: Indexed) => Indexed) {
-  return function (Component: typeof Block) {
-    return class extends Component {
+export function withStore(mapStateToProps: (state: Indexed) => Indexed) {
+  return function wrap(Component: typeof Block) {
+    let previousState: any = null;
+
+    return class WithStore extends Component {
       constructor(props: any) {
-        // сохраняем начальное состояние
-        let state = mapStateToProps(store.getState());
+        previousState = mapStateToProps(store.getState());
 
-        super({...props, ...state});
+        super({ ...props, ...previousState });
 
-        // подписываемся на событие
         store.on(StoreEvents.Updated, () => {
-          // при обновлении получаем новое состояние
-          const newState = mapStateToProps(store.getState());
+          const stateProps = mapStateToProps(store.getState());
 
-          // если что-то из используемых данных поменялось, обновляем компонент
-          if (!isEqual(state, newState)) {
-            this.setProps({...newState});
+          // previousState = stateProps;
+          if (isEqual(previousState, stateProps)) {
+            return;
           }
 
-          // не забываем сохранить новое состояние
-          state = newState;
+          this.setProps({ ...stateProps });
         });
       }
-    }
-  }
+    };
+  };
 }
-export default store;

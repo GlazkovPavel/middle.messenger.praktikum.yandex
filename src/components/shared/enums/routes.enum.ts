@@ -4,5 +4,5 @@ export enum Routes {
   NOT_FOUND = 'not-found',
   SERVER_ERROR = 'server-error',
   MESSENGER = '/messenger',
-  SETTING = '/settings'
+  SETTING = '/setting'
 }

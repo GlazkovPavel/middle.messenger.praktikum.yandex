@@ -4,54 +4,61 @@ import router from '../utils/router';
 import {AuthAPI} from '../api/auth-api';
 import store from '../utils/store';
 
-export class AuthController {
-
-   private loginApi = new AuthAPI();
+class AuthController {
+  constructor(private api: AuthAPI) {}
 
   async signin(data: ISignUp) {
     try {
-      await this.loginApi.signin(data);
-      await this.fetchUser();
+      await this.api.signin(data);
+      this.fetchUser(); // await
+
+      store.set("user.error", undefined);
+
       router.go("/messenger");
     } catch (e: any) {
-      console.error('Error during sign-in', e.message);
+      console.error(e);
     }
   }
 
   async signup(data: ISubmitForm) {
     try {
-      await this.loginApi.signup(data);
+      await this.api.signup(data);
       await this.fetchUser();
+
       router.go("/messenger");
     } catch (e: any) {
-      console.error('Error during sign-up', e.message);
+      console.error(e.message);
+    }
+  }
+
+  async request(req: () => void) {
+    store.set("user.isLoading", true);
+    try {
+      await req();
+
+      store.set("user.error", undefined);
+    } catch (e: any) {
+      store.set("user.error", e);
+      console.error(e.message);
+    } finally {
+      store.set("user.isLoading", false);
     }
   }
 
   async fetchUser() {
-    store.set('user.isLoading', true);
-    try {
-      store.set('user.error', undefined);
-      const user = await this.loginApi.read();
-      store.set("user", user);
-      console.log(user);
-    } catch (e: any) {
-      store.set('user.error', e);
-      console.error('Error during user fetch', e.message);
-    } finally {
-      store.set('user.isLoading', false);
-    }
+    const user = await this.api.read();
+
+    // @ts-ignore
+    store.set("user", user);
   }
 
-  // async logout() {
-  //   try {
-  //     await this.api.logout();
-  //
-  //     router.go("/");
-  //   } catch (e: any) {
-  //     console.error('Error during logging out', e.message);
-  //   }
-  // }
+  async logout() {
+    await this.request(async () => {
+      await this.api.logout();
+
+      router.go("/");
+    });
+  }
 }
 
-export default new AuthController();
+export default new AuthController(new AuthAPI());

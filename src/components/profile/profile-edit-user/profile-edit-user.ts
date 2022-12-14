@@ -2,15 +2,18 @@ import template from './profile-edit-user.hbs';
 import {Input} from "../../shared/input/input";
 import Block from '../../../utils/block';
 import {IUser} from '../../shared/interfaces/user.interface';
+import Store from "../../../utils/store";
+import AuthController from "../../../controllers/auth-controller";
 
 export class ProfileEditUser extends Block {
 
-
-  constructor(user: IUser | undefined) {
-    super({}, user);
+  constructor(props: IUser | undefined) {
+    super({...props});
   }
 
   init() {
+    AuthController.fetchUser();
+
     this.children.userEmail = new Input({
       type: "email",
       name: "email",
@@ -18,7 +21,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "4",
       id: "email-input",
-      value: `${this.user!.email}`
+      value: `${this.props.email}`
     });
 
     this.children.username = new Input({
@@ -28,7 +31,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "username-input",
-      value: `${this.user!.username}`
+      value: `${this.props}`
     });
 
     this.children.firstName = new Input({
@@ -38,7 +41,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "first_name-input",
-      value: `${this.user!.first_name}`
+      value: `${this.props.first_name}`
     });
 
     this.children.secondName = new Input({
@@ -48,7 +51,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "second_name-input",
-      value: `${this.user!.second_name}`
+      value: `${this.props!.second_name}`
     });
 
     this.children.displayName = new Input({
@@ -58,7 +61,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "display_name-input",
-      value: `${this.user!.display_name}`
+      value: `${this.props!.display_name}`
     });
 
     this.children.phone = new Input({
@@ -68,12 +71,14 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "phone-input",
-      value: `${this.user!.phone}`
+      value: `${this.props!.phone}`
     });
 
   }
 
   render() {
+    console.log(this.props)
+    console.log(Store.getState())
     return this.compile(template, {...this.props});
   }
 }
