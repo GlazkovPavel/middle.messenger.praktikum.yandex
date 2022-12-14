@@ -9,6 +9,7 @@ import * as imgFile from "../static/images/file.svg";
 import * as imgLocation from "../static/images/location.svg";
 import {IProfileState} from './components/profile/interfaces/profile-state.interface';
 import Router from './utils/router';
+import {Routes} from './components/shared/enums/routes.enum';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const chat = new Chat({
@@ -52,12 +53,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // const notFound = new NotFound();
   // const serverError = new ServerError();
 
-  Router.use('/', SignIn)
-    .use('/sign-up', SignUp)
-    .use('not-found', NotFound)
-    .use('server-error', ServerError)
-    .use('/messenger', Chat)
-    .use('/settings', Profile)
+  Router.use(Routes.SIGN_IN, SignIn)
+    .use(Routes.SIGN_UP, SignUp)
+    .use(Routes.NOT_FOUND, NotFound)
+    .use(Routes.SERVER_ERROR, ServerError)
+    .use(Routes.MESSENGER, Chat)
+    .use(Routes.SETTING, Profile)
   Router.start();
 
 

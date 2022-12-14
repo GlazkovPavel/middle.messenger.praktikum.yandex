@@ -1,10 +1,10 @@
 import Block from "./block";
 import {Indexed} from "./helpers";
-import {Store} from "./store";
 import {StoreEvents} from "../components/shared/enums/store.enum";
 import isEqual from "./isEqual";
+import store from './store';
 
-const store = new Store();
+
 export function connect(mapStateToProps: (state: Indexed) => Indexed) {
   return function (Component: typeof Block) {
     return class extends Component {

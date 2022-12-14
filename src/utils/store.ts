@@ -2,7 +2,7 @@ import {EventBus} from "./event-bus";
 import {set} from "./helpers";
 import {StoreEvents} from "../components/shared/enums/store.enum";
 
-export class Store extends EventBus {
+class Store extends EventBus {
   private state: any = {};
 
   public set(path: string, value: unknown) {
@@ -15,3 +15,7 @@ export class Store extends EventBus {
     return this.state;
   }
 }
+
+const store = new Store()
+
+export default store;
