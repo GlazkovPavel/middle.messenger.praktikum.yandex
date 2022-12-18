@@ -10,7 +10,7 @@ class AuthController {
   async signin(data: ISignUp) {
     try {
       await this.api.signin(data);
-      this.fetchUser(); // await
+      await this.fetchUser();
 
       store.set("user.error", undefined);
 
@@ -49,7 +49,7 @@ class AuthController {
     const user = await this.api.read();
 
     // @ts-ignore
-    store.set("user", user);
+    store.set("user", user!.response);
   }
 
   async logout() {

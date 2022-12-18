@@ -1,11 +1,11 @@
 import Block from "./block";
-import {Indexed} from "./helpers";
 import {StoreEvents} from "../components/shared/enums/store.enum";
 import isEqual from "./isEqual";
 import store from './store';
+import {State} from "../components/shared/interfaces/state.interface";
 
 
-export function withStore(mapStateToProps: (state: Indexed) => Indexed) {
+export function withStore(mapStateToProps: (state: State) => State) {
   return function wrap(Component: typeof Block) {
     let previousState: any = null;
 
@@ -18,7 +18,6 @@ export function withStore(mapStateToProps: (state: Indexed) => Indexed) {
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
 
-          // previousState = stateProps;
           if (isEqual(previousState, stateProps)) {
             return;
           }

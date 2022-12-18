@@ -4,15 +4,16 @@ import Block from '../../../utils/block';
 import {IUser} from '../../shared/interfaces/user.interface';
 import Store from "../../../utils/store";
 import AuthController from "../../../controllers/auth-controller";
+import {withStore} from "../../../utils/hoc";
 
 export class ProfileEditUser extends Block {
 
   constructor(props: IUser | undefined) {
-    super({...props});
+      super({ ...props });
   }
 
   init() {
-    AuthController.fetchUser();
+    //AuthController.fetchUser();
 
     this.children.userEmail = new Input({
       type: "email",
@@ -31,7 +32,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "username-input",
-      value: `${this.props}`
+      value: `${this.props.user?.first_name}`
     });
 
     this.children.firstName = new Input({
@@ -41,7 +42,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "first_name-input",
-      value: `${this.props.first_name}`
+      value: `${this.props?.first_name}`
     });
 
     this.children.secondName = new Input({
@@ -77,8 +78,11 @@ export class ProfileEditUser extends Block {
   }
 
   render() {
-    console.log(this.props)
-    console.log(Store.getState())
+    console.log(this.props.email)
+    console.log(Store.getState().user)
     return this.compile(template, {...this.props});
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user }))
+export const ProfilePageEditUser = withUser(ProfileEditUser);

@@ -4,8 +4,9 @@ import Block from "../../utils/block";
 import {Button} from '../shared/button';
 import {IProfileState} from './interfaces/profile-state.interface';
 import AuthController from "../../controllers/auth-controller";
-import {ProfileEditUser} from "./profile-edit-user/profile-edit-user";
+import {ProfilePageEditUser} from "./profile-edit-user/profile-edit-user";
 import {withStore} from "../../utils/hoc";
+import {State} from "../shared/interfaces/state.interface";
 
 export class Profile extends Block {
 
@@ -19,8 +20,10 @@ export class Profile extends Block {
     await AuthController.fetchUser();
   }
 
-  init() {
-    this.children.profileEdit = new ProfileEditUser(this.props);
+   init() {
+    AuthController.fetchUser();
+
+    this.children.profileEdit = new ProfilePageEditUser(this.props);
     this.children.profileEditPassword = new ProfileEditPassword();
     this.children.buttonEdit = new Button({
       events: {
@@ -94,5 +97,5 @@ export class Profile extends Block {
 
 }
 
-const withUser = withStore((state) => ({ ...state.user }));
+const withUser = withStore((state) => ({ ...state.user }))
 export const ProfilePage = withUser(Profile);
