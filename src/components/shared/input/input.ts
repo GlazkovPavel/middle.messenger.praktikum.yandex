@@ -3,7 +3,7 @@ import Block from "../../../utils/block";
 import {IInputProps} from "../interfaces/input.interface";
 import {validate} from '../../../utils/validate';
 
-export class Input extends Block<IInputProps> {
+export class Input extends Block {
   constructor(props: IInputProps) {
     const events = {
       focusin: (e: Event): void => this.onFocus(e),
