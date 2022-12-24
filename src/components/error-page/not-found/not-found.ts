@@ -1,5 +1,5 @@
 import template from './not-found.hbs';
-import {Button} from "../../shared/button";
+import {Button} from "../../shared/components/button";
 import router from '../../../utils/router';
 import {Block} from '../../../utils/block';
 

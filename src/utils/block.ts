@@ -223,10 +223,10 @@ export class Block<P extends Record<string, any> = any> {
   }
 
   public show() {
-    this.getContent()!.style.display = "flex";
+    this.getContent()!.classList.add('open');
   }
 
   public hide() {
-    this.getContent()!.style.display = "none";
+    this.getContent()!.classList.remove('open');
   }
 }

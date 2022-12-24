@@ -9,11 +9,11 @@ export class AuthAPI extends BaseAPI {
   }
 
   public signin(data: ISubmitForm) {
-    return this.http.post("/signin", {data});
+    return this.http.post("/signin", data);
   }
 
   public signup(data: ISignUp) {
-    return this.http.post("/signup", {data});
+    return this.http.post("/signup", data);
   }
 
   public read(): Promise<IUser | unknown> {
@@ -22,7 +22,7 @@ export class AuthAPI extends BaseAPI {
 
 
   logout() {
-    return this.http.post("/logout", {});
+    return this.http.post("/logout");
   }
 
   create = undefined;

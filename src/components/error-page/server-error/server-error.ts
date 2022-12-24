@@ -1,5 +1,5 @@
 import template from './server-error.hbs';
-import {Button} from "../../shared/button";
+import {Button} from "../../shared/components/button";
 import {Block} from '../../../utils/block';
 
 export class ServerError extends Block {

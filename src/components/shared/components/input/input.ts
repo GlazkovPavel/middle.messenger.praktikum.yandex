@@ -1,7 +1,7 @@
 import template from './input.hbs';
-import {IInputProps} from "../interfaces/input.interface";
-import {validate} from '../../../utils/validate';
-import {Block} from '../../../utils/block';
+import {IInputProps} from "../../interfaces/input.interface";
+import {validate} from '../../../../utils/validate';
+import {Block} from '../../../../utils/block';
 
 export class Input extends Block {
   constructor(props: IInputProps) {

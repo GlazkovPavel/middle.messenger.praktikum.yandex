@@ -41,4 +41,8 @@ export const patterns: Record<string, IPattern> = {
     error: "write something",
     regExp: /(.|\s)*\S(.|\s)*$/,
   },
+  avatar: {
+    error: "вставьте файл",
+    regExp: /(.|\s)*\S(.|\s)*$/,
+  },
 };

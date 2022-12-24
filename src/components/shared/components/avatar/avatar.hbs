@@ -1,0 +1,12 @@
+<div class="avatar">
+  <div class="avatar__photo-container">
+    {{#if avatar}}
+      <figure class="avatar__photo-edit"></figure>
+      <img class="avatar__photo" src="{{avatar}}"  alt="avatar">
+    {{else}}
+      <figure class="avatar__photo-edit"></figure>
+      <img class="avatar__photo" src="{{photo}}"  alt="avatar">
+    {{/if}}
+  </div>
+  <div class="avatar__name">Hi, {{user.first_name}}</div>
+</div>

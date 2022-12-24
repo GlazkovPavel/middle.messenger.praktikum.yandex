@@ -1,0 +1,82 @@
+@import "../../../index";
+.popup-container {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-container.open {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.popup {
+  width: 280px;
+  height: 180px;
+  background-color: @colorGrey70;
+  padding: 40px 30px 36px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup-title {
+  margin: 0;
+  color: @colorBlack;
+  background: none;
+}
+
+input[type="file" i]::-webkit-file-upload-button {
+  border: none;
+  margin: 0 10px;
+  color: @colorBlue;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.popup__close{
+  background: url('../../../../../static/images/close_module_Icon.svg');
+  overflow: hidden;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: -25px;
+  top: -25px;
+  color: @colorWhite;
+  cursor: pointer;
+  outline: none;
+  transition: transform .8s ease-in-out;
+}
+.popup__close:hover{
+  opacity: .6;
+  transform: rotate(360deg);
+}
+
+.popup__button {
+  width: 100%;
+  height: 2 * @part10px;
+  margin-top: 4 * @part10px;
+  border-radius: 8px;
+  background-color: @colorBlue;
+  color: @colorWhite;
+  border: none;
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
 import template from './profile-edit-password.hbs';
-import {Input} from "../../shared/input/input";
+import {Input} from "../../shared/components/input/input";
 import {Block} from '../../../utils/block';
 
 export class ProfileEditPassword extends Block {

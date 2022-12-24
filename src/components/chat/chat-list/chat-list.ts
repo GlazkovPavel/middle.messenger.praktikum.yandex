@@ -1,5 +1,5 @@
 import template from './chat-list.hbs';
-import {Input} from "../../shared/input/input";
+import {Input} from "../../shared/components/input/input";
 import {IChatMessage} from "../interfaces/chat-message.interface";
 import {ChatMessage} from "../chat-message/chat-message";
 import {chatArray} from '../const/chats';

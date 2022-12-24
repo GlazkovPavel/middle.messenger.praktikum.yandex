@@ -1,12 +1,5 @@
 import {Methods} from '../components/shared/enums/methods.enum';
-import {IHttpRequest} from '../components/shared/interfaces/http-request.interface';
-import {PATH} from '../api/const-api';
-
-interface IOptions {
-  method: Methods;
-  data?: any;
-  headers?: Record<string, string>;
-}
+import {IOptions} from "../components/shared/interfaces/options.interface";
 
 export class HTTPTransport {
   static API_URL = "https://ya-praktikum.tech/api/v2";

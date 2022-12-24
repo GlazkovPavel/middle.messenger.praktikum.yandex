@@ -1,7 +1,7 @@
-import Block from './block';
 import {render} from './render';
 import {isEqualString} from './helpers';
 import {NotFound} from '../components/error-page/not-found/not-found';
+import {Block} from "./block";
 
 export class Route {
   private _block: Block | null = null;

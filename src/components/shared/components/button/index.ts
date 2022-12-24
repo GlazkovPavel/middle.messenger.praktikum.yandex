@@ -1,6 +1,6 @@
 import template from "./button.hbs";
-import {IButtonProps} from "../interfaces/button.interface";
-import {Block} from '../../../utils/block';
+import {IButtonProps} from "../../interfaces/button.interface";
+import {Block} from '../../../../utils/block';
 
 export class Button extends Block<IButtonProps> {
   constructor(props: IButtonProps) {
