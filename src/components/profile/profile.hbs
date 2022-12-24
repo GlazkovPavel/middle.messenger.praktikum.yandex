@@ -6,14 +6,14 @@
         <figure class="avatar__photo-edit"></figure>
         <img class="avatar__photo" src="{{avatar}}"  alt="avatar">
       </div>
-      <div class="avatar__name">Hi, {{first_name}} {{email}}</div>
+      <div class="avatar__name">Hi, {{first_name}}</div>
     </div>
     <div class="profile-form">
-
-       {{{ profileEdit }}}
-
-       {{{ profileEditPassword }}}
-
+      {{#if isProfileEdit}}
+        {{{ profileEdit }}}
+      {{else}}
+        {{{ profileEditPassword }}}
+      {{/if}}
     </div>
     <div class="button__container">
         {{# if isCanEdit }}

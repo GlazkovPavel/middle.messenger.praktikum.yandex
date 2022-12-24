@@ -1,5 +1,5 @@
-import {BaseAPI} from './base-api';
 import {HTTPTransport} from '../utils/api';
+import BaseAPI from './base-api';
 
 const chatAPIInstance = new HTTPTransport("api/v1/chats");
 
@@ -11,16 +11,16 @@ export class ChatAPI extends BaseAPI {
 
   request() {
     // Здесь уже не нужно писать полный путь /api/v1/chats/
-    return chatAPIInstance.get('/full', {});
+    return chatAPIInstance.get('/full');
   }
 
   update() {
     // Здесь уже не нужно писать полный путь /api/v1/chats/
-    return chatAPIInstance.get('/full', {});
+    return chatAPIInstance.get('/full');
   }
 
   delete() {
     // Здесь уже не нужно писать полный путь /api/v1/chats/
-    return chatAPIInstance.get('/full', {});
+    return chatAPIInstance.get('/full');
   }
 }

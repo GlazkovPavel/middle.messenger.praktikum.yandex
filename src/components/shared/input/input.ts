@@ -10,7 +10,6 @@ export class Input extends Block {
       focusout: (e: Event): void => this.onBlur(e),
     };
     super({class: 'container__form-input', events,  ...props});
-    console.log(this.props)
   }
 
   public setValue(value: string) {

@@ -47,9 +47,7 @@ class AuthController {
 
   async fetchUser() {
     const user = await this.api.read();
-
-    // @ts-ignore
-    store.set("user", user!.response);
+    store.set("user", user);
   }
 
   async logout() {

@@ -6,4 +6,5 @@ export interface IUser {
   display_name?: string;
   phone?: string;
   photo?: string;
+  isCanEdit?: boolean;
 }

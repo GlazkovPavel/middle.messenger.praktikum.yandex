@@ -2,10 +2,14 @@ import template from './profile.hbs';
 import {ProfileEditPassword} from "./profile-edit-password/profile-edit-password";
 import {Button} from '../shared/button';
 import AuthController from "../../controllers/auth-controller";
-import {withUser} from '../../hoc/with-user.hoc';
 import {IProfileState} from './interfaces/profile-state.interface';
 import {Block} from '../../utils/block';
 import {ProfilePageEditUser} from './profile-edit-user/profile-edit-user';
+import withStore from '../../hoc/hoc';
+
+const profileEdit = new ProfilePageEditUser({
+  isCanEdit: true,
+})
 
 export class Profile extends Block {
 
@@ -15,20 +19,9 @@ export class Profile extends Block {
     super(props);
   }
 
-
-  private setConsole(): void {
-    console.log('componentDidMount')
-  }
-
-  async componentDidMount() {
-    await AuthController.fetchUser();
-    this.setConsole();
-  }
-
    init() {
-
-     // @ts-ignore
-     this.children.profileEdit = new ProfilePageEditUser({});
+    AuthController.fetchUser();
+    this.children.profileEdit = profileEdit;
     this.children.profileEditPassword = new ProfileEditPassword();
     this.children.buttonEdit = new Button({
       events: {
@@ -70,8 +63,11 @@ export class Profile extends Block {
   }
 
   private onEditUser() {
+    profileEdit.setProps({
+      ...this.props.user,
+      isCanEdit: false,
+    })
     this.setProps({
-      ...this.props,
       isCanEdit: true,
     })
   }
@@ -85,6 +81,10 @@ export class Profile extends Block {
   }
 
   private onSave() {
+    profileEdit.setProps({
+      ...this.props.user,
+      isCanEdit: true,
+    })
     this.setProps({
       ...this.props,
       isProfileEdit: true,
@@ -102,4 +102,4 @@ export class Profile extends Block {
 
 }
 
-export const ProfilePage = withUser(Profile as typeof Block);
+export const ProfilePage = withStore((state) => ( { ...state.user, isProfileEdit: true } ))(Profile as typeof Block);

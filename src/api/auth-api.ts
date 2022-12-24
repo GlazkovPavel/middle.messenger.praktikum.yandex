@@ -17,7 +17,7 @@ export class AuthAPI extends BaseAPI {
   }
 
   public read(): Promise<IUser | unknown> {
-    return this.http.get("/user", {});
+    return this.http.get("/user");
   }
 
 
