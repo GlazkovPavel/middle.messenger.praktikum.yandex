@@ -1,12 +1,14 @@
 import template from './profile-edit-user.hbs';
 import {Input} from "../../shared/input/input";
-import Block from '../../../utils/block';
 import Store from "../../../utils/store";
 import {withUser} from '../../../hoc/with-user.hoc';
 import {IUser} from '../../shared/interfaces/user.interface';
 import store from '../../../utils/store';
 import {StoreEvents} from '../../shared/enums/store.enum';
 import isEqual from '../../../utils/isEqual';
+import AuthController from '../../../controllers/auth-controller';
+import {Block} from '../../../utils/block';
+import withStore from '../../../hoc/hoc';
 
 export class ProfileEditUser extends Block {
 
@@ -14,8 +16,10 @@ export class ProfileEditUser extends Block {
   //     super({ ...props });
   // }
 
+  private user: IUser | undefined;
+
   init() {
-    //AuthController.fetchUser();
+    AuthController.fetchUser();
     this.children.userEmail = new Input({
       type: "email",
       name: "email",
@@ -53,7 +57,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "second_name-input",
-      value: `${this.props}`
+      value: `${this.props.user.first_name}`
     });
 
     this.children.displayName = new Input({
@@ -73,7 +77,7 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "phone-input",
-      value: `${this.user?.phone}`
+      value: `${this.user?.first_name}`
     });
 
   }
@@ -89,8 +93,9 @@ export class ProfileEditUser extends Block {
 
   render() {
     this.getStateUser();
+    console.log(this.props.user)
     return this.compile(template, {...this.props});
   }
 }
 
-export const ProfilePageEditUser = withUser(ProfileEditUser);
+export const ProfilePageEditUser = withStore((state) => ({ user: { ...state.user } }))(ProfileEditUser);

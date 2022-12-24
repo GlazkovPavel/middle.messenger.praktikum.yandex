@@ -9,8 +9,16 @@
       <hr/>
       <div class="profile__container">
         <p class="profile__form-input-name">Username</p>
-        {{{ username }}}
-        {{first_name}}
+        <input
+          type="text"
+          name="username"
+        class="profile__form-input"
+        required
+        minlength="2"
+        id="username-input"
+        value={{user.first_name}}
+
+        />
       </div>
       <span id="username-input-error" class="input-error"></span>
       <hr/>

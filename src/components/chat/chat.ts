@@ -2,9 +2,9 @@ import template from './chat.hbs';
 import {ChatList} from "./chat-list/chat-list";
 import PopupAttachment from "./utils/PopupAttachment";
 import {Button} from "../shared/button";
-import Block from "../../utils/block";
 import {IChat} from "./interfaces/chat.interface";
 import {Input} from "../shared/input/input";
+import {Block} from '../../utils/block';
 
 export class Chat extends Block<IChat> {
   constructor(props: IChat) {

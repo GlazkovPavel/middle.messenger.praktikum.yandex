@@ -1,31 +1,34 @@
 import template from './profile.hbs';
 import {ProfileEditPassword} from "./profile-edit-password/profile-edit-password";
-import Block from "../../utils/block";
 import {Button} from '../shared/button';
 import AuthController from "../../controllers/auth-controller";
-import { ProfilePageEditUser} from "./profile-edit-user/profile-edit-user";
 import {withUser} from '../../hoc/with-user.hoc';
+import {IProfileState} from './interfaces/profile-state.interface';
+import {Block} from '../../utils/block';
+import {ProfilePageEditUser} from './profile-edit-user/profile-edit-user';
 
 export class Profile extends Block {
 
   public isProfileEdit: boolean = true;
 
-  // constructor(props: IProfileState, user: IUser) {
-  //   super(props, user);
-  // }
-
-   componentDidMount() {
-    this.setConsole();
+  constructor(props: IProfileState) {
+    super(props);
   }
+
 
   private setConsole(): void {
     console.log('componentDidMount')
   }
 
-   init() {
-    AuthController.fetchUser();
+  async componentDidMount() {
+    await AuthController.fetchUser();
+    this.setConsole();
+  }
 
-    this.children.profileEdit = new ProfilePageEditUser({});
+   init() {
+
+     // @ts-ignore
+     this.children.profileEdit = new ProfilePageEditUser({});
     this.children.profileEditPassword = new ProfileEditPassword();
     this.children.buttonEdit = new Button({
       events: {
@@ -99,4 +102,4 @@ export class Profile extends Block {
 
 }
 
-export const ProfilePage = withUser(Profile);
+export const ProfilePage = withUser(Profile as typeof Block);

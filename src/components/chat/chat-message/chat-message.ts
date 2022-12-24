@@ -1,6 +1,6 @@
 import template from './chat-message.hbs';
-import Block from "../../../utils/block";
 import {IChatMessage} from "../interfaces/chat-message.interface";
+import {Block} from '../../../utils/block';
 
 export class ChatMessage extends Block<IChatMessage>{
   constructor(props: IChatMessage) {

@@ -1,6 +1,6 @@
 import template from './server-error.hbs';
-import Block from "../../../utils/block";
 import {Button} from "../../shared/button";
+import {Block} from '../../../utils/block';
 
 export class ServerError extends Block {
     constructor() {

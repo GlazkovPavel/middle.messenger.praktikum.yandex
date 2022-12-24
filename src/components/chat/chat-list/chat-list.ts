@@ -1,9 +1,9 @@
 import template from './chat-list.hbs';
-import Block from "../../../utils/block";
 import {Input} from "../../shared/input/input";
 import {IChatMessage} from "../interfaces/chat-message.interface";
 import {ChatMessage} from "../chat-message/chat-message";
 import {chatArray} from '../const/chats';
+import {Block} from '../../../utils/block';
 
 export class ChatList extends Block {
   constructor() {

@@ -1,7 +1,7 @@
 import template from './input.hbs';
-import Block from "../../../utils/block";
 import {IInputProps} from "../interfaces/input.interface";
 import {validate} from '../../../utils/validate';
+import {Block} from '../../../utils/block';
 
 export class Input extends Block {
   constructor(props: IInputProps) {
@@ -9,7 +9,8 @@ export class Input extends Block {
       focusin: (e: Event): void => this.onFocus(e),
       focusout: (e: Event): void => this.onBlur(e),
     };
-    super({class: 'container__form-input', value: '', events,  ...props});
+    super({class: 'container__form-input', events,  ...props});
+    console.log(this.props)
   }
 
   public setValue(value: string) {

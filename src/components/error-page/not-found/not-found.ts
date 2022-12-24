@@ -1,7 +1,7 @@
 import template from './not-found.hbs';
-import Block from "../../../utils/block";
 import {Button} from "../../shared/button";
 import router from '../../../utils/router';
+import {Block} from '../../../utils/block';
 
 export class NotFound extends Block {
     constructor() {

@@ -1,9 +1,9 @@
-import Block from "../../../utils/block";
 import template from './sign-in.hbs';
 import {Input} from "../../shared/input/input";
 import {Button} from "../../shared/button";
 import router from '../../../utils/router';
 import authController from "../../../controllers/auth-controller";
+import {Block} from '../../../utils/block';
 
 export class SignIn extends Block {
 
