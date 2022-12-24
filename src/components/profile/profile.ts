@@ -14,8 +14,12 @@ export class Profile extends Block {
   //   super(props, user);
   // }
 
-  async componentDidMount() {
-    await AuthController.fetchUser();
+   componentDidMount() {
+    this.setConsole();
+  }
+
+  private setConsole(): void {
+    console.log('componentDidMount')
   }
 
    init() {

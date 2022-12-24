@@ -3,6 +3,10 @@ import {Input} from "../../shared/input/input";
 import Block from '../../../utils/block';
 import Store from "../../../utils/store";
 import {withUser} from '../../../hoc/with-user.hoc';
+import {IUser} from '../../shared/interfaces/user.interface';
+import store from '../../../utils/store';
+import {StoreEvents} from '../../shared/enums/store.enum';
+import isEqual from '../../../utils/isEqual';
 
 export class ProfileEditUser extends Block {
 
@@ -69,14 +73,22 @@ export class ProfileEditUser extends Block {
       required: "required",
       minlength: "2",
       id: "phone-input",
-      value: `${this.props!.phone}`
+      value: `${this.user?.phone}`
     });
 
   }
 
+   private getStateUser(): void {
+
+     store.on(StoreEvents.Updated, () => {
+       console.log(Store.getState()?.user)
+       this.user = Store.getState()?.user
+       console.log(this.user)
+     });
+  }
+
   render() {
-    console.log(this.props.email)
-    console.log(Store.getState().user)
+    this.getStateUser();
     return this.compile(template, {...this.props});
   }
 }

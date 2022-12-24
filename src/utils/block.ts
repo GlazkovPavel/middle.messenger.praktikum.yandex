@@ -82,9 +82,12 @@ class Block<P extends Record<string, any> = any> {
 
     _componentDidMount(): void {
         this.componentDidMount();
+        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    componentDidMount(): void {}
+  protected componentDidMount() {
+    return;
+  }
 
     public dispatchComponentDidMount(): void {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
