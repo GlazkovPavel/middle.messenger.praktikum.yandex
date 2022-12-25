@@ -19,7 +19,8 @@ class UserController {
     try {
       await this.api.updatePassword(data);
     } catch (e: any) {
-      console.error(e.message);
+      console.error(e.reason);
+      throw e;
     }
   }
 

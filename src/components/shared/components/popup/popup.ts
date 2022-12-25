@@ -4,8 +4,9 @@ import {Block} from "../../../../utils/block";
 
 interface IPopup {
   title: string;
+  classTitle?: string;
   content?: Block;
-  button: Block;
+  button?: Block;
   close: Block;
   // className?: string;
   events?: {

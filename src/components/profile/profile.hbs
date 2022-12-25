@@ -2,7 +2,9 @@
    {{{buttonBack}}}
   <div class="profile-main">
     {{{avatar}}}
-    {{{ popup }}}
+    {{{ popupAvatar }}}
+    {{{ popupPasswordError }}}
+    {{{ popupError }}}
     <div class="profile-form">
       {{#if isProfileEdit}}
         {{{ profileEdit }}}
@@ -12,7 +14,11 @@
     </div>
     <div class="button__container">
         {{# if isCanEdit }}
-          {{{ buttonSave }}}
+          {{# if isProfileEdit }}
+            {{{ buttonSaveUser }}}
+          {{else}}
+            {{{ buttonSavePassword }}}
+          {{/if}}
         {{else}}
           {{{ buttonEdit }}}
           {{{ buttonEditPassword }}}

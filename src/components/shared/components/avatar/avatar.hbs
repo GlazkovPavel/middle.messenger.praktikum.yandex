@@ -1,8 +1,8 @@
 <div class="avatar">
   <div class="avatar__photo-container">
-    {{#if avatar}}
+    {{#if user.avatar}}
       <figure class="avatar__photo-edit"></figure>
-      <img class="avatar__photo" src="{{avatar}}"  alt="avatar">
+      <img class="avatar__photo" src="https://ya-praktikum.tech/api/v2/resources{{user.avatar}}"  alt="avatar">
     {{else}}
       <figure class="avatar__photo-edit"></figure>
       <img class="avatar__photo" src="{{photo}}"  alt="avatar">
