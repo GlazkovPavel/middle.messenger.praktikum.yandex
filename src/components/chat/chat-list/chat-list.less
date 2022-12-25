@@ -2,7 +2,6 @@
 .chat-header {
   display: flex;
   flex-direction: column;
-  margin-top: @part10px;
 
   .button {
     width: 8 * @part10px;
@@ -15,9 +14,23 @@
     color: @colorGrey;
     cursor: pointer;
   }
+  .container__button {
+    padding: 10px;
+    background: none;
+    color: @colorBlue;
+    border: none;
+    margin: 16px 0 16px auto;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
   .input {
     height: 32px;
-    background: @colorWhiteSmoke;
+    background: #EFEFEF;
     border-radius: 5px;
     margin-top: 2 * @part10px;
     border: none;
@@ -29,7 +42,7 @@
     }
 
     &:focus {
-      box-shadow: 1px 1px 2px 0 @colorGrey70;
+      box-shadow: 1px 1px 2px 0 #636364;
     }
   }
 }

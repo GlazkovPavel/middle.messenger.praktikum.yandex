@@ -1,4 +1,4 @@
-import {IUser} from "./user.interface";
+import {IUser} from "../../shared/interfaces/user.interface";
 
 export interface ChatInfo {
   id: number;

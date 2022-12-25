@@ -1,10 +1,11 @@
 import template from './chat.hbs';
 import {ChatList} from "./chat-list/chat-list";
-import PopupAttachment from "./utils/PopupAttachment";
 import {Button} from "../shared/components/button";
 import {IChat} from "./interfaces/chat.interface";
 import {Input} from "../shared/components/input/input";
 import {Block} from '../../utils/block';
+import PopupAttach from "./utils/PopupAttachment";
+import ChatsController from "../../controllers/chats-controller";
 
 export class Chat extends Block<IChat> {
   constructor(props: IChat) {
@@ -12,7 +13,7 @@ export class Chat extends Block<IChat> {
   }
 
   init() {
-    this.children.chatList = new ChatList();
+    this.children.chatList = new ChatList({ isLoaded: false });
 
     this.children.buttonAttachment = new Button({
       id: 'attachment-button',
@@ -36,7 +37,13 @@ export class Chat extends Block<IChat> {
       type: 'text',
       placeholder: 'Message',
       class: 'form__input',
-    })
+    });
+
+    ChatsController.fetchChats().finally(() => {
+      (this.children.chatsList as Block)?.setProps({
+        isLoaded: true
+      })
+    });
 
   }
 
@@ -45,7 +52,7 @@ export class Chat extends Block<IChat> {
   }
 
   private onShowMenu(): void {
-    const openPopupAttachment = new PopupAttachment('.popupAttachment');
+    const openPopupAttachment = new PopupAttach('.popupAttachment');
 
       if (openPopupAttachment.getIsOlenPopup()) {
         openPopupAttachment.close();

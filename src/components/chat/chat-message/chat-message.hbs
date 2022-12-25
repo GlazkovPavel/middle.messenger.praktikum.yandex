@@ -11,6 +11,8 @@
   </div>
   <div class="chat-info">
     <span class="time">{{timeMessage}}</span>
-    <span class="total-message">{{totalMessage}}</span>
+    {{#if unread_count }}
+      <span class="total-message">{{unread_count}}</span>
+    {{/if}}
   </div>
 </div>

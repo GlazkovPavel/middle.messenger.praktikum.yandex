@@ -6,7 +6,7 @@ import {IProfileState} from './interfaces/profile-state.interface';
 import {Block} from '../../utils/block';
 import {ProfilePageEditUser} from './profile-edit-user/profile-edit-user';
 import withStore from '../../hoc/hoc';
-import UserController from "../../controllers/update-user";
+import UserController from "../../controllers/update-user-controller";
 import {AvatarUser} from "../shared/components/avatar/avatar";
 import {Popup} from "../shared/components/popup/popup";
 import {Input} from "../shared/components/input/input";
