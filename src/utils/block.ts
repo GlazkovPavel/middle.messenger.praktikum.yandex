@@ -147,13 +147,13 @@ export class Block<P extends Record<string, any> = any> {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id='${component.id}'></div>`;
+      contextAndStubs[name] = `<div data-id='${component?.id}'></div>`;
       if (Array.isArray(component)) {
         contextAndStubs[name] = component.map(
           (child) => `<div data-id="${child.id}"></div>`
         );
       } else {
-        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+        contextAndStubs[name] = `<div data-id="${component?.id}"></div>`;
       }
     });
 
@@ -164,7 +164,7 @@ export class Block<P extends Record<string, any> = any> {
     temp.innerHTML = html;
 
     const replaceStub = (component: Block) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+      const stub = temp.content.querySelector(`[data-id="${component?.id}"]`);
 
       if (!stub) {
         return;

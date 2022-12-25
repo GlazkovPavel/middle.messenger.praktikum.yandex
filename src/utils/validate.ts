@@ -9,6 +9,9 @@ export const validate = (
   const regExp: RegExp = patterns[input.name].regExp;
   const isValid: boolean = regExp.test(input.value);
 
+  if (!error) {
+    return;
+  }
   if (isValid) {
     if (event.type === "focusout") {
       error!.textContent = "";

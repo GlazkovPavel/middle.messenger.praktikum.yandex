@@ -5,6 +5,7 @@ export interface ChatProps {
   title: string;
   unread_count: number;
   selectedChat: ChatInfo;
+  last_message: Record<string, string>;
   events: {
     click: () => void;
   }

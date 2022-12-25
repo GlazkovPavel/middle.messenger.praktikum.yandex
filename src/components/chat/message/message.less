@@ -1,0 +1,38 @@
+@import "../../../index";
+.text-message {
+  background-color: @colorBlack;
+  color: @colorWhiteSmoke;
+  border-radius: 10px;
+  margin: 0 0 16px;
+  font-size: 12px;
+  max-width: 400px;
+  width: max-content;
+  padding: 11px 11px 11px 14px;
+  display: flex;
+}
+
+.from-me {
+  align-self: flex-end;
+  background-color: @colorRed;
+}
+
+.time-message {
+  font-size: 9px;
+  color: @colorGrey;
+  margin: 0;
+  padding: 8px 6px 0 8px;
+  align-self: flex-end;
+}
+
+.time-from-me {
+  color: @colorBlackShadow;
+}
+
+.read {
+  color: @colorRed;
+  padding: 8px 0 0 8px;
+  &::before {
+    content: url(../../../../static/images/photo-video.svg);
+    margin-right: 4px;
+  }
+}

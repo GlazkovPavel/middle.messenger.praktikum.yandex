@@ -67,6 +67,7 @@ class ChatsListBase extends Block<ChatsListProps> {
         ...data,
         events: {
           click: () => {
+            console.log(data);
             ChatsController.selectChat(data.id);
           }
         }
@@ -80,6 +81,7 @@ class ChatsListBase extends Block<ChatsListProps> {
     button!.addEventListener('click', () => {
       if (input.value) {
         ChatsController.create(input.value)
+          .then(() => input.value = '');
       }
       return;
     })

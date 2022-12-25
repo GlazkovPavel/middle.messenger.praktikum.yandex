@@ -1,6 +1,6 @@
 import WSTransport, {WSTransportEvents} from "../utils/WSTransport";
 import store from "../utils/store";
-import {Message} from "../components/shared/interfaces/message.interface";
+import {Message} from "../components/chat/interfaces/message.interface";
 
 class MessagesController {
   private sockets: Map<number, WSTransport> = new Map();

@@ -5,6 +5,7 @@ export interface IUser {
   second_name?: string;
   display_name?: string;
   phone?: string;
-  photo?: string;
+  avatar?: string;
   isCanEdit?: boolean;
+  id?: number;
 }

@@ -1,6 +1,7 @@
 import store from "../utils/store";
 import API, {ChatsAPI} from "../api/chats-api";
 import MessagesController from "./messages-controller";
+import AuthController from "./auth-controller";
 
 class ChatsController {
   private readonly api: ChatsAPI;
@@ -16,6 +17,9 @@ class ChatsController {
   }
 
   async fetchChats() {
+    if (!store.getState().user?.id) {
+      await AuthController.fetchUser();
+    }
     const chats = await this.api.read();
 
     chats.map(async (chat) => {

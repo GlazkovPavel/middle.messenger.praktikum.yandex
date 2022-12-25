@@ -1,20 +1,24 @@
 import template from './chat.hbs';
 import {ChatList} from "./chat-list/chat-list";
 import {Button} from "../shared/components/button";
-import {IChat} from "./interfaces/chat.interface";
 import {Input} from "../shared/components/input/input";
 import {Block} from '../../utils/block';
 import PopupAttach from "./utils/PopupAttachment";
 import ChatsController from "../../controllers/chats-controller";
+import withStore from "../../hoc/hoc";
+import MessagesController from "../../controllers/messages-controller";
+import store from "../../utils/store";
+import {MessengerProps} from "./interfaces/messenger-props.interface";
+import {Message} from "./message/message";
 
-export class Chat extends Block<IChat> {
-  constructor(props: IChat) {
-    super(props);
+export class ChatBase extends Block {
+  constructor() {
+    super({});
   }
 
   init() {
     this.children.chatList = new ChatList({ isLoaded: false });
-
+    this.children.messages = this.createMessages(this.props)
     this.children.buttonAttachment = new Button({
       id: 'attachment-button',
       class: 'attachment',
@@ -47,8 +51,25 @@ export class Chat extends Block<IChat> {
 
   }
 
+  protected componentDidUpdate(_oldProps: MessengerProps, newProps: MessengerProps): boolean {
+    this.children.messages = this.createMessages(newProps);
+
+    return true;
+  }
+
+  private createMessages(props: MessengerProps) {
+    return props.messages?.map(data => {
+      return new Message({...data, isMine: props.userId === data.user_id });
+    })
+  }
+
   private onSubmit(): void {
-    console.log('Send message');
+    const input = this.children.message as Input;
+    const message = input.getValue();
+
+    input.setValue('');
+
+    MessagesController.sendMessage(store.getState().selectedChat, message);
   }
 
   private onShowMenu(): void {
@@ -67,4 +88,29 @@ export class Chat extends Block<IChat> {
     return this.compile(template, {...this.props});
   }
 }
+
+const withSelectedChatMessages = withStore((state) => {
+  const selectedChatId = state.selectedChat;
+
+  if (!selectedChatId) {
+    return {
+      messages: [],
+      chats: [...(state.chats || [])],
+      selectedChat: undefined,
+      userId: state.user?.id,
+      avatar: state.user?.avatar
+    };
+  }
+
+  return {
+    messages: (state.messages || {})[selectedChatId] || [],
+    chats: [...(state.chats || [])],
+    selectedChat: state.selectedChat,
+    userId: state.user?.id,
+    avatar: state.user?.avatar
+  };
+});
+
+export const Chat = withSelectedChatMessages(ChatBase as any);
+
 

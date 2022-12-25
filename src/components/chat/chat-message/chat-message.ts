@@ -9,7 +9,16 @@ class ChatBase extends Block<ChatProps> {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props, isSelected: this.props.id === this.props.selectedChat?.id});
+    let time = this.props.last_message?.time;
+    if (time !== undefined) {
+      time = new Date(time).toLocaleTimeString().toString().substring(0, 5);
+    }
+
+    return this.compile(template, {
+      ...this.props,
+      isSelected: this.props.id === this.props.selectedChat?.id,
+      time
+    });
   }
 }
 

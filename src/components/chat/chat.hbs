@@ -5,7 +5,7 @@
 <div class="chat__main">
   <div class="header">
     <div class="photo-container">
-      <img class="photo__avatar" alt="avatar" src={{photo}}>
+      <img class="photo__avatar" alt="avatar" src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
       <span class="username">{{name}}</span>
     </div>
     <span class="button__menu">
@@ -13,7 +13,15 @@
     </span>
   </div>
   <div class="space">
-    <span class="no-open-chat">Выберите чат чтобы отправить сообщение</span>
+    {{#if selectedChat }}
+      <div class="">
+        {{#each messages}}
+          {{{this}}}
+        {{/each}}
+      </div>
+    {{else}}
+      <span class="no-open-chat">Выберите чат чтобы отправить сообщение</span>
+    {{/if}}
   </div>
   <div class="message">
     {{{ buttonAttachment }}}
