@@ -6,8 +6,15 @@
     <h3 class="popup-title {{ classTitle }}">{{ title }}</h3>
     <div class="popup-content">
       {{{ content }}}
+      {{#if usersCards}}
+        {{#each usersCards}}
+          {{{this}}}
+        {{/each}}
+      {{/if}}
     </div>
     {{{ button }}}
+    {{{ button2 }}}
+    {{{ button3 }}}
     </h3>
   </form>
 

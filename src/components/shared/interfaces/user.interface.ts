@@ -8,4 +8,5 @@ export interface IUser {
   avatar?: string;
   isCanEdit?: boolean;
   id?: number;
+  users?: IUser[];
 }

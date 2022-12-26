@@ -1,0 +1,31 @@
+@import "../../../index";
+
+.user__card-container {
+  display: flex;
+  align-items: center;
+  background: #636364;
+  width: calc(100% - 12px);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(54, 53, 53, 0.14);
+  justify-content: space-between;
+  cursor: pointer;
+
+  .photo__avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .username {
+    color: @colorWhite;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    margin-left: @part10px;
+    background: none;
+  }
+}
+

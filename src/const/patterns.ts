@@ -45,6 +45,10 @@ export const patterns: Record<string, IPattern> = {
     error: "write something",
     regExp: /(.|\s)*\S(.|\s)*$/,
   },
+  search: {
+    error: "write something",
+    regExp: /(.|\s)*\S(.|\s)*$/,
+  },
   inputCreate: {
     error: "Напишите что-нибудь...",
     regExp: /(.|\s)*\S(.|\s)*$/,

@@ -26,12 +26,17 @@
     border-top: 1px solid @colorWhiteSmoke;
     display: flex;
     justify-content: center;
+    padding: 10px;
+
+    .space__chats {
+      width: 100%;
+    }
 
     .no-open-chat {
       font-weight: 500;
       font-size: 12px;
       line-height: 12px;
-      color: @colorGrey;
+      color: @colorBlue;
       align-self: center;
     }
   }
@@ -146,62 +151,62 @@
     }
   }
 
-  .popup {
-    width: 162px;
-    height: 128px;
-    box-shadow: 0 0 6px @colorBlackShadow;
-    border-radius: 12px;
-    position: absolute;
-    padding: @part10px;
-    left: 10px;
-    bottom: 70px;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0.3s, opacity 0.3s linear;
-
-    &__card {
-      display: flex;
-      align-items: center;
-      height: 42px;
-      transition: background-color .3s ease-in;
-      width: 162px;
-      &:hover {
-        cursor: pointer;
-        background-color: @colorBlackShadow;
-      }
-
-      &:first-child {
-        border-top-right-radius: 12px;
-        border-top-left-radius: 12px;
-      }
-
-      &:last-child {
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-      }
-    }
-
-    &__card-img {
-      background: none;
-      margin-left: 4px;
-    }
-
-
-    &__card-text {
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 14px;
-      color: @colorBlack;
-      margin-left: 15px;
-      background: none;
-    }
-  }
-  .popup_opened{
-    transition: visibility 0s, opacity 0.3s linear;
-    visibility: visible;
-    opacity: 1;
-
-  }
+  //.popup {
+  //  width: 162px;
+  //  height: 128px;
+  //  box-shadow: 0 0 6px @colorBlackShadow;
+  //  border-radius: 12px;
+  //  position: absolute;
+  //  padding: @part10px;
+  //  left: 10px;
+  //  bottom: 70px;
+  //  visibility: hidden;
+  //  opacity: 0;
+  //  transition: visibility 0.3s, opacity 0.3s linear;
+  //
+  //  &__card {
+  //    display: flex;
+  //    align-items: center;
+  //    height: 42px;
+  //    transition: background-color .3s ease-in;
+  //    width: 162px;
+  //    &:hover {
+  //      cursor: pointer;
+  //      background-color: @colorBlackShadow;
+  //    }
+  //
+  //    &:first-child {
+  //      border-top-right-radius: 12px;
+  //      border-top-left-radius: 12px;
+  //    }
+  //
+  //    &:last-child {
+  //      border-bottom-left-radius: 12px;
+  //      border-bottom-right-radius: 12px;
+  //    }
+  //  }
+  //
+  //  &__card-img {
+  //    background: none;
+  //    margin-left: 4px;
+  //  }
+  //
+  //
+  //  &__card-text {
+  //    font-weight: 500;
+  //    font-size: 12px;
+  //    line-height: 14px;
+  //    color: @colorBlack;
+  //    margin-left: 15px;
+  //    background: none;
+  //  }
+  //}
+  //.popup_opened{
+  //  transition: visibility 0s, opacity 0.3s linear;
+  //  visibility: visible;
+  //  opacity: 1;
+  //
+  //}
 }
 
 

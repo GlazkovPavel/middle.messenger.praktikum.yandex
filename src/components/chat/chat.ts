@@ -10,6 +10,11 @@ import MessagesController from "../../controllers/messages-controller";
 import store from "../../utils/store";
 import {MessengerProps} from "./interfaces/messenger-props.interface";
 import {Message} from "./message/message";
+import {Popup} from "../shared/components/popup/popup";
+import UserController from "../../controllers/update-user-controller";
+import {UserCard} from "../shared/components/user-card/user-card";
+import {IUser} from "../shared/interfaces/user.interface";
+import {isEqualObject} from "../../utils/helpers";
 
 export class ChatBase extends Block {
   constructor() {
@@ -35,12 +40,89 @@ export class ChatBase extends Block {
       }
     });
 
+    this.children.menuButton = new Button({
+      id: 'menu-button',
+      class: 'menu',
+      events: {
+        click: () => (this.children.popupMenu as Popup).show()
+      }
+    });
+
     this.children.message = new Input({
       id: 'message',
       name: 'message',
       type: 'text',
       placeholder: 'Message',
       class: 'form__input',
+    });
+
+    this.children.popupMenu = new Popup({
+      title: "Меню",
+      close: new Button({
+        class: 'popup__close',
+        events: {
+          click: () => {
+            (this.children.popupMenu as Popup).hide();
+          },
+        },
+      }),
+      button: new Button({
+        label: "Добавить пользователя",
+        type: "click",
+        class: 'popup__button',
+        events: {
+          click: (e: any) => {
+            e.preventDefault();
+            (this.children.popupMenu as Popup).hide();
+            (this.children.popupAddUser as Popup).show();
+          },
+        },
+      }),
+    });
+
+    this.children.popupWithUsersCard = new Popup({
+      title: "Выберите пользователя",
+      usersCards: this.createUsersCards(this.props),
+      close: new Button({
+        class: 'popup__close',
+        events: {
+          click: () => {
+            (this.children.popupWithUsersCard as Popup).hide();
+          },
+        },
+      }),
+    })
+
+    this.children.popupAddUser = new Popup({
+      title: "Добавить пользователя",
+      button: new Button({
+        label: "Искать",
+        type: "submit",
+        class: 'popup__button',
+        events: {
+          click: (e: any) => {
+            e.preventDefault();
+            const input: HTMLInputElement = document.querySelector("#input-search") as HTMLInputElement;
+            UserController.searchUser({login: input.value});
+            (this.children.popupAddUser as Popup).hide();
+            (this.children.popupWithUsersCard as Popup).show();
+          },
+        },
+      }),
+      close: new Button({
+        class: 'popup__close',
+        events: {
+          click: () => {
+            (this.children.popupAddUser as Popup).hide();
+          },
+        },
+      }),
+      content: new Input({
+        type: "text",
+        id: 'input-search',
+        placeholder: "Введите имя...",
+        name: "search",
+      }),
     });
 
     ChatsController.fetchChats().finally(() => {
@@ -53,15 +135,45 @@ export class ChatBase extends Block {
 
   protected componentDidUpdate(_oldProps: MessengerProps, newProps: MessengerProps): boolean {
     this.children.messages = this.createMessages(newProps);
-
+    if (newProps?.users && !isEqualObject(_oldProps?.users, newProps?.users)) {
+      this.children.popupWithUsersCard = new Popup({
+        title: "Выберите пользователя",
+        usersCards: this.createUsersCards(newProps),
+        close: new Button({
+          class: 'popup__close',
+          events: {
+            click: () => {
+              (this.children.popupWithUsersCard as Popup).hide();
+            },
+          },
+        }),
+      })
+      this.children.popupWithUsersCard.show()
+    }
     return true;
   }
 
-  private createMessages(props: MessengerProps) {
+  private createUsersCards(props: any): UserCard[] {
+    return props.users?.map((val: IUser) => {
+      return new UserCard({
+        id: val.id as number,
+        avatar: val.avatar,
+        name: val.first_name as string,
+        events: {
+          click: () => {
+            console.log(store.getState().selectedChat, val.id)
+            ChatsController.addUserToChat(store.getState().selectedChat, val.id as number);
+          },
+        },
+      })
+    })
+  }
+
+  private createMessages(props: MessengerProps): Message[] {
     return props.messages?.map(data => {
       return new Message({...data, isMine: props.userId === data.user_id });
     })
-  }
+  };
 
   private onSubmit(): void {
     const input = this.children.message as Input;
@@ -98,7 +210,8 @@ const withSelectedChatMessages = withStore((state) => {
       chats: [...(state.chats || [])],
       selectedChat: undefined,
       userId: state.user?.id,
-      avatar: state.user?.avatar
+      avatar: state.user?.avatar,
+      users: state.user?.users
     };
   }
 
@@ -107,7 +220,8 @@ const withSelectedChatMessages = withStore((state) => {
     chats: [...(state.chats || [])],
     selectedChat: state.selectedChat,
     userId: state.user?.id,
-    avatar: state.user?.avatar
+    avatar: state.user?.avatar,
+    users: state.user?.users
   };
 });
 

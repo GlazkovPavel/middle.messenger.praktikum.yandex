@@ -5,16 +5,21 @@
 <div class="chat__main">
   <div class="header">
     <div class="photo-container">
-      <img class="photo__avatar" alt="avatar" src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
+      {{#if avatar}}
+        <img class="photo__avatar" alt="avatar" src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
+      {{/if}}
       <span class="username">{{name}}</span>
     </div>
+    {{#if selectedChat }}
     <span class="button__menu">
-        <button class="menu"></button>
+        {{{ menuButton }}}
     </span>
+    {{/if}}
   </div>
   <div class="space">
+    {{{ popupWithUsersCard }}}
     {{#if selectedChat }}
-      <div class="">
+      <div class="space__chats">
         {{#each messages}}
           {{{this}}}
         {{/each}}
@@ -30,19 +35,22 @@
     </form>
       {{{ buttonSendMessage }}}
   </div>
-  <div class="popup">
-    <div class="popup__card">
-      <img class="popup__card-img" src={{popup.photoCard.src}} alt="img-card">
-      <span class="popup__card-text">{{popup.photoCard.text}}</span>
-    </div>
-    <div class="popup__card">
-      <img class="popup__card-img" src={{popup.file.src}} alt="img-card">
-      <span class="popup__card-text">{{popup.file.text}}</span>
-    </div>
-    <div class="popup__card">
-      <img class="popup__card-img" src={{popup.location.src}} alt="img-card">
-      <span class="popup__card-text">{{popup.location.text}}</span>
-    </div>
-  </div>
+  {{{ popupMenu }}}
+  {{{ popupAddUser }}}
+
+<!--  <div class="popup">-->
+<!--    <div class="popup__card">-->
+<!--      <img class="popup__card-img" src={{popup.photoCard.src}} alt="img-card">-->
+<!--      <span class="popup__card-text">{{popup.photoCard.text}}</span>-->
+<!--    </div>-->
+<!--    <div class="popup__card">-->
+<!--      <img class="popup__card-img" src={{popup.file.src}} alt="img-card">-->
+<!--      <span class="popup__card-text">{{popup.file.text}}</span>-->
+<!--    </div>-->
+<!--    <div class="popup__card">-->
+<!--      <img class="popup__card-img" src={{popup.location.src}} alt="img-card">-->
+<!--      <span class="popup__card-text">{{popup.location.text}}</span>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>
 </div>

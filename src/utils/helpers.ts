@@ -61,3 +61,7 @@ export function set(
 
   return merge(object as Indexed, result);
 }
+
+export function isEqualObject(obj: object, obj2: object): boolean {
+  return JSON.stringify(obj) === JSON.stringify(obj2);
+}

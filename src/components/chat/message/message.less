@@ -1,31 +1,34 @@
 @import "../../../index";
 .text-message {
-  background-color: @colorBlack;
-  color: @colorWhiteSmoke;
+  background-color: @colorBackgroundMessage;
+  color: @colorWhite;
   border-radius: 10px;
   margin: 0 0 16px;
-  font-size: 12px;
+  font-size: 14px;
   max-width: 400px;
   width: max-content;
-  padding: 11px 11px 11px 14px;
+  padding: 14px;
   display: flex;
+  align-items: center;
+
 }
 
 .from-me {
   align-self: flex-end;
-  background-color: @colorRed;
+  background-color: @colorMyMessage;
 }
 
 .time-message {
-  font-size: 9px;
-  color: @colorGrey;
-  margin: 0;
-  padding: 8px 6px 0 8px;
+  text-align: center;
+  font-size: 9.6px;
+  margin-left: 6px;
+  color: @colorWhite;
   align-self: flex-end;
+  background: none;
 }
 
 .time-from-me {
-  color: @colorBlackShadow;
+  color: @colorWhite;
 }
 
 .read {

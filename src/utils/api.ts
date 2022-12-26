@@ -13,7 +13,7 @@ export class HTTPTransport {
     return this.request<Response>(this.endpoint + path);
   }
 
-  public post<Response = void>(
+  public post<Response>(
     path: string,
     data?: unknown
   ): Promise<Response> {

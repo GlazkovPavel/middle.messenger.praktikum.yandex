@@ -108,7 +108,7 @@ export class Profile extends Block {
              formData.append("avatar", input?.files[0]);
 
              UserController.updateAvatar(formData);
-             (this.children.popup as Popup).hide();
+             (this.children.popupAvatar as Popup).hide();
            },
          },
        }),
@@ -116,7 +116,7 @@ export class Profile extends Block {
          class: 'popup__close',
          events: {
            click: () => {
-             (this.children.popup as Popup).hide();
+             (this.children.popupAvatar as Popup).hide();
            },
          },
        }),
