@@ -15,6 +15,7 @@ import UserController from "../../controllers/update-user-controller";
 import {UserCard} from "../shared/components/user-card/user-card";
 import {IUser} from "../shared/interfaces/user.interface";
 import {isEqualObject} from "../../utils/helpers";
+import {ChatInfo} from "./interfaces/chat-info.interface";
 
 export class ChatBase extends Block {
   constructor() {
@@ -211,7 +212,8 @@ const withSelectedChatMessages = withStore((state) => {
       selectedChat: undefined,
       userId: state.user?.id,
       avatar: state.user?.avatar,
-      users: state.user?.users
+      users: state.user?.users,
+      isMineChat: (state.chats?.find((item: ChatInfo) => item!.id === state.selectedChat)?.created_by === state.user?.id),
     };
   }
 
@@ -221,7 +223,8 @@ const withSelectedChatMessages = withStore((state) => {
     selectedChat: state.selectedChat,
     userId: state.user?.id,
     avatar: state.user?.avatar,
-    users: state.user?.users
+    users: state.user?.users,
+    isMineChat: (state.chats?.find((item: ChatInfo) => item!.id === state.selectedChat)?.created_by === state.user?.id),
   };
 });
 
