@@ -3,7 +3,6 @@ import {ChatList} from "./chat-list/chat-list";
 import {Button} from "../shared/components/button";
 import {Input} from "../shared/components/input/input";
 import {Block} from '../../utils/block';
-import PopupAttach from "./utils/PopupAttachment";
 import ChatsController from "../../controllers/chats-controller";
 import withStore from "../../hoc/hoc";
 import MessagesController from "../../controllers/messages-controller";
@@ -25,13 +24,6 @@ export class ChatBase extends Block {
   init() {
     this.children.chatList = new ChatList({ isLoaded: false });
     this.children.messages = this.createMessages(this.props)
-    this.children.buttonAttachment = new Button({
-      id: 'attachment-button',
-      class: 'attachment',
-      events: {
-        click: () => this.onShowMenu(),
-      }
-    });
 
     this.children.buttonSendMessage = new Button({
       id: 'message-button',
@@ -79,11 +71,37 @@ export class ChatBase extends Block {
           },
         },
       }),
+      button2: new Button({
+        label: "Удалить пользователя",
+        type: "click",
+        class: 'popup__button',
+        events: {
+          click: (e: any) => {
+            e.preventDefault();
+            ChatsController.getUsersChat(this.props.selectedChat as number);
+            (this.children.popupMenu as Popup).hide();
+
+          },
+        },
+      }),
     });
+
+    this.children.popupDeleteUser = new Popup({
+      title: "Выберите пользователя",
+      //usersCards: this.createUsersCards(this.props, false),
+      close: new Button({
+        class: 'popup__close',
+        events: {
+          click: () => {
+            (this.children.popupDeleteUser as Popup).hide();
+          },
+        },
+      }),
+    }) as Popup;
 
     this.children.popupWithUsersCard = new Popup({
       title: "Выберите пользователя",
-      usersCards: this.createUsersCards(this.props),
+      usersCards: this.createUsersCards(this.props, true),
       close: new Button({
         class: 'popup__close',
         events: {
@@ -139,7 +157,7 @@ export class ChatBase extends Block {
     if (newProps?.users && !isEqualObject(_oldProps?.users, newProps?.users)) {
       this.children.popupWithUsersCard = new Popup({
         title: "Выберите пользователя",
-        usersCards: this.createUsersCards(newProps),
+        usersCards: this.createUsersCards(newProps, true),
         close: new Button({
           class: 'popup__close',
           events: {
@@ -151,23 +169,51 @@ export class ChatBase extends Block {
       })
       this.children.popupWithUsersCard.show()
     }
+    if (newProps?.chatUsers && !isEqualObject(_oldProps?.chatUsers, newProps?.chatUsers)) {
+      this.children.popupDeleteUser = new Popup({
+        title: "Выберите пользователя",
+        usersCards: this.createUsersCards(newProps, false),
+        close: new Button({
+          class: 'popup__close',
+          events: {
+            click: () => {
+              (this.children.popupDeleteUser as Popup).hide();
+            },
+          },
+        }),
+      })
+      this.children.popupDeleteUser.show()
+    }
     return true;
   }
 
-  private createUsersCards(props: any): UserCard[] {
-    return props.users?.map((val: IUser) => {
+  private createUsersCards(props: any, isCreate: boolean): UserCard[] {
+    return isCreate ? props.users?.map((val: IUser) => {
       return new UserCard({
         id: val.id as number,
         avatar: val.avatar,
         name: val.first_name as string,
         events: {
           click: () => {
-            console.log(store.getState().selectedChat, val.id)
-            ChatsController.addUserToChat(store.getState().selectedChat, val.id as number);
+            ChatsController.addUserToChat(store.getState().selectedChat.id, val.id as number);
+            (this.children.popupWithUsersCard as Popup).hide();
           },
         },
       })
-    })
+    }) :
+      props.chatUsers?.map((val: IUser) => {
+        return new UserCard({
+          id: val.id as number,
+          avatar: val.avatar,
+          name: val.first_name as string,
+          events: {
+            click: () => {
+              ChatsController.deleteUserFromChat(store.getState().selectedChat.id, val.id as number);
+              (this.children.popupDeleteUser as Popup).hide();
+            },
+          },
+        })
+      })
   }
 
   private createMessages(props: MessengerProps): Message[] {
@@ -182,19 +228,7 @@ export class ChatBase extends Block {
 
     input.setValue('');
 
-    MessagesController.sendMessage(store.getState().selectedChat, message);
-  }
-
-  private onShowMenu(): void {
-    const openPopupAttachment = new PopupAttach('.popupAttachment');
-
-      if (openPopupAttachment.getIsOlenPopup()) {
-        openPopupAttachment.close();
-      } else {
-        openPopupAttachment.setEventListener();
-        openPopupAttachment.open();
-      }
-
+    MessagesController.sendMessage(store.getState().selectedChat.id, message);
   }
 
   render()  {
@@ -203,7 +237,7 @@ export class ChatBase extends Block {
 }
 
 const withSelectedChatMessages = withStore((state) => {
-  const selectedChatId = state.selectedChat;
+  const selectedChatId = state.selectedChat?.id;
 
   if (!selectedChatId) {
     return {
@@ -213,18 +247,20 @@ const withSelectedChatMessages = withStore((state) => {
       userId: state.user?.id,
       avatar: state.user?.avatar,
       users: state.user?.users,
-      isMineChat: (state.chats?.find((item: ChatInfo) => item!.id === state.selectedChat)?.created_by === state.user?.id),
+      chatUsers: state.selectedChat?.users,
+      isMineChat: (state.chats?.find((item: ChatInfo) => item!.id === state.selectedChat?.id)?.created_by === state.user?.id),
     };
   }
 
   return {
     messages: (state.messages || {})[selectedChatId] || [],
     chats: [...(state.chats || [])],
-    selectedChat: state.selectedChat,
+    selectedChat: state.selectedChat?.id,
     userId: state.user?.id,
     avatar: state.user?.avatar,
     users: state.user?.users,
-    isMineChat: (state.chats?.find((item: ChatInfo) => item!.id === state.selectedChat)?.created_by === state.user?.id),
+    chatUsers: state.selectedChat?.users,
+    isMineChat: (state.chats?.find((item: ChatInfo) => item!.id === state.selectedChat?.id)?.created_by === state.user?.id),
   };
 });
 

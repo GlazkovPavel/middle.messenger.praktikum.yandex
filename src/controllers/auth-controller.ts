@@ -3,6 +3,7 @@ import {ISignUp} from '../components/shared/interfaces/sign-up.interface';
 import router from '../utils/router';
 import {AuthAPI} from '../api/auth-api';
 import store from '../utils/store';
+import MessagesController from "./messages-controller";
 
 class AuthController {
   constructor(private api: AuthAPI) {}
@@ -51,11 +52,13 @@ class AuthController {
   }
 
   async logout() {
-    await this.request(async () => {
+    try {
       await this.api.logout();
-
+      MessagesController.closeAll();
       router.go("/");
-    });
+    } catch (e: any) {
+      console.error(e.message);
+    }
   }
 }
 

@@ -53,9 +53,23 @@
   .chat-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 100%;
     margin: 2px 0;
+
+    .button-delete {
+      width: 12px;
+      height: 12px;
+      background: url("../../../../static/images/delete.svg");
+      border: none;
+      transition: background .2s ease-in, box-shadow .2s ease-in;
+      border-radius: 50%;
+      &:hover {
+        background-color: @colorGrey70;
+        box-shadow: 0 0 0 4px @colorGrey70;
+        cursor: pointer;
+      }
+    }
 
     .time {
       font-weight: 500;

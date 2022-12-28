@@ -65,6 +65,16 @@ class ChatsListBase extends Block<ChatsListProps> {
     return props.chats.map(data => {
       return new ChatMessage({
         ...data,
+        buttonDelete: new Button({
+          id: 'button-delete',
+          class: 'button-delete',
+          events: {
+            click: (): void => {
+              console.log(data);
+              ChatsController.delete(data.id);
+            },
+          }
+        }),
         events: {
           click: () => {
             console.log(data);

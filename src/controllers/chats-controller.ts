@@ -2,6 +2,7 @@ import store from "../utils/store";
 import API, {ChatsAPI} from "../api/chats-api";
 import MessagesController from "./messages-controller";
 import AuthController from "./auth-controller";
+import {IUser} from "../components/shared/interfaces/user.interface";
 
 class ChatsController {
   private readonly api: ChatsAPI;
@@ -35,10 +36,25 @@ class ChatsController {
     this.api.addUsers(id, [userId]);
   }
 
+  async getUsersChat(id: number) {
+    try {
+      const users: IUser[] = await this.api.getUsers(id);
+      store.set('selectedChat.users', users);
+      return users;
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
+
+  async deleteUserFromChat(id: number, userId: number) {
+    await this.api.deleteUsers(id, [userId]);
+    await this.fetchChats();
+  }
+
   async delete(id: number) {
     await this.api.delete(id);
 
-    this.fetchChats();
+    await this.fetchChats();
   }
 
   getToken(id: number) {
@@ -46,7 +62,7 @@ class ChatsController {
   }
 
   selectChat(id: number) {
-    store.set('selectedChat', id);
+    store.set('selectedChat.id', id);
   }
 }
 

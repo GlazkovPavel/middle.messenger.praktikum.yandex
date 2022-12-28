@@ -23,6 +23,8 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
+    "mocha": "10.2.0",
+    "chai": "4.3.7",
     "events": "3.3.0",
     "handlebars-helper-less": "0.1.1",
     "less": "4.1.3",

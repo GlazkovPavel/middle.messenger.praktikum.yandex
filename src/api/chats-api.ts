@@ -20,12 +20,16 @@ export class ChatsAPI extends BaseAPI {
     return this.http.get('/');
   }
 
-  getUsers(id: number): Promise<Array<IUser & { role: string }>> {
+  getUsers(id: number): Promise<Array<IUser>> {
     return this.http.get(`/${id}/users`)
   }
 
   addUsers(id: number, users: number[]): Promise<unknown> {
     return this.http.put('/users', { users, chatId: id });
+  }
+
+  deleteUsers(id: number, users: number[]): Promise<unknown> {
+    return this.http.delete("/users", { users, chatId: id });
   }
 
   async getToken(id: number): Promise<string> {

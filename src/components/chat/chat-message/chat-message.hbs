@@ -8,12 +8,14 @@
   <div class="chat-container">
     <span class="user-name">{{title}}</span>
     <div class="chat-text">
-      {{#if isMine}}
-        <p class="from">Me: </p> {{/if}}<p class="message"> {{ last_message.content }}</p>
+        <span class="message"> {{ last_message.content }}</span>
     </div>
   </div>
   <div class="chat-info">
     <span class="time">{{time}}</span>
+    {{#if isMine}}
+      {{{buttonDelete}}}
+    {{/if}}
     {{#if unread_count }}
       <span class="total-message">{{unread_count}}</span>
     {{/if}}
