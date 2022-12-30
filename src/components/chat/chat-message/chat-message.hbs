@@ -1,8 +1,8 @@
-<div class="chat-message">
+<div class="chat-message {{#if isSelected}}selected{{/if}}">
     <div class="photo">
-      {{#if last_message.user.avatar }}
-      <img class="photo__avatar" alt="avatar" src="https://ya-praktikum.tech/api/v2/resources{{last_message.user.avatar}}">
-      {{else}} <span>{{title}}</span>
+      {{#if avatar }}
+      <img class="photo__avatar" alt="avatar" src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
+      {{else}} <p class="no-avatar">{{title}}</p>
       {{/if}}
     </div>
   <div class="chat-container">

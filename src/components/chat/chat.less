@@ -67,30 +67,25 @@
       margin-left: @part10px;
     }
 
-    .button__menu {
+    .menu {
       border: none;
       margin: 10px 30px 0 0;
       text-align: center;
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
       transition: background .2s ease-in;
       border-radius: 50%;
+      background-position-x: center;
+      background: url("/static/images/menu-grey.svg");
+      transition: background .2s ease-in;
+      background-repeat: no-repeat;
       &:hover {
         background-color: @colorGrey70;
+        cursor: pointer;
         .menu {
           background: url("/static/images/menu-blue.svg");
           background-repeat: no-repeat;
         }
-      }
-      .menu {
-        margin-top: 4px;
-        border: none;
-        width: 3px;
-        height: 18px;
-        background: url("/static/images/menu-grey.svg");
-        transition: background .2s ease-in;
-        background-repeat: no-repeat;
-
       }
     }
   }

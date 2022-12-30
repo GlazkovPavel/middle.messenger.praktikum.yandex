@@ -5,4 +5,7 @@ export interface IButtonProps extends ITypeName{
     events?: {
       click: (e: Event) => void;
     };
+    eventsSubmit?: {
+      submit: (e: SubmitEvent) => void;
+    };
 }

@@ -15,6 +15,7 @@ import {UserCard} from "../shared/components/user-card/user-card";
 import {IUser} from "../shared/interfaces/user.interface";
 import {isEqualObject} from "../../utils/helpers";
 import {ChatInfo} from "./interfaces/chat-info.interface";
+import {Form} from "../shared/components/form/form";
 
 export class ChatBase extends Block {
   constructor() {
@@ -25,13 +26,33 @@ export class ChatBase extends Block {
     this.children.chatList = new ChatList({ isLoaded: false });
     this.children.messages = this.createMessages(this.props)
 
-    this.children.buttonSendMessage = new Button({
-      id: 'message-button',
-      class: 'form__button',
+    this.children.sendForm = new Form({
+      input: new Input({
+        id: 'message-input',
+        name: 'message',
+        type: 'text',
+        placeholder: 'Message',
+        class: 'form__input',
+      }),
       events: {
-        click: () => this.onSubmit(),
-      }
-    });
+        submit: (e: SubmitEvent) => {
+          e.preventDefault();
+          this.onSubmit()
+        },
+      },
+      class: 'form',
+      button: new Button({
+        id: 'message-button',
+        class: 'form__button',
+        type: 'submit',
+        eventsSubmit: {
+          submit: (e: SubmitEvent) => {
+            e.preventDefault();
+            this.onSubmit()
+          },
+        },
+      })
+    })
 
     this.children.menuButton = new Button({
       id: 'menu-button',
@@ -39,14 +60,6 @@ export class ChatBase extends Block {
       events: {
         click: () => (this.children.popupMenu as Popup).show()
       }
-    });
-
-    this.children.message = new Input({
-      id: 'message',
-      name: 'message',
-      type: 'text',
-      placeholder: 'Message',
-      class: 'form__input',
     });
 
     this.children.popupMenu = new Popup({
@@ -88,7 +101,6 @@ export class ChatBase extends Block {
 
     this.children.popupDeleteUser = new Popup({
       title: "Выберите пользователя",
-      //usersCards: this.createUsersCards(this.props, false),
       close: new Button({
         class: 'popup__close',
         events: {
@@ -223,12 +235,13 @@ export class ChatBase extends Block {
   };
 
   private onSubmit(): void {
-    const input = this.children.message as Input;
-    const message = input.getValue();
-
-    input.setValue('');
-
-    MessagesController.sendMessage(store.getState().selectedChat.id, message);
+    const form = this.children.sendForm as Form;
+    const message = form.getContent()?.querySelector('#message-input') as HTMLInputElement;
+    if (message.value.trim()) {
+      MessagesController.sendMessage(store.getState().selectedChat.id, message.value);
+      message.value = '';
+    }
+    return;
   }
 
   render()  {
@@ -243,7 +256,7 @@ const withSelectedChatMessages = withStore((state) => {
     return {
       messages: [],
       chats: [...(state.chats || [])],
-      selectedChat: undefined,
+      selectedChat: state?.chats?.length &&  ChatsController.selectChat(state?.chats[0]?.id),
       userId: state.user?.id,
       avatar: state.user?.avatar,
       users: state.user?.users,

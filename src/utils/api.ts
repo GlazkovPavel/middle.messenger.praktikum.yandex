@@ -1,8 +1,10 @@
 import {Methods} from '../components/shared/enums/methods.enum';
 import {IOptions} from "../components/shared/interfaces/options.interface";
+import {PATH} from "../api/const-api";
+import {queryStringify} from "./helpers";
 
 export class HTTPTransport {
-  static API_URL = "https://ya-praktikum.tech/api/v2";
+  static API_URL = PATH.baseURL;
   protected endpoint: string;
 
   constructor(endpoint: string) {
@@ -55,7 +57,9 @@ export class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      const isGetMethod = method === Methods.GET;
+
+      xhr.open(method, isGetMethod && !!data ? `${url}${queryStringify(data)}` : url);
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {

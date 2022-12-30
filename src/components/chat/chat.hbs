@@ -11,13 +11,12 @@
       <span class="username">{{name}}</span>
     </div>
     {{#if isMineChat }}
-    <span class="button__menu">
+
         {{{ menuButton }}}
-    </span>
+
     {{/if}}
   </div>
   <div class="space">
-    {{{ popupWithUsersCard }}}
     {{#if selectedChat }}
       <div class="space__chats">
         {{#each messages}}
@@ -29,13 +28,12 @@
     {{/if}}
   </div>
   <div class="message">
-    <form class="form">
-      {{{ message }}}
-    </form>
-      {{{ buttonSendMessage }}}
+    {{{ sendForm }}}
+    {{{ buttonSendMessage }}}
   </div>
   {{{ popupMenu }}}
   {{{ popupAddUser }}}
   {{{ popupDeleteUser }}}
+  {{{ popupWithUsersCard }}}
 </div>
 </div>
