@@ -37,6 +37,10 @@ export const patterns: Record<string, IPattern> = {
     error: "8-40 symbols (at least 1 number, 1 capital)",
     regExp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40})$/,
   },
+  password: {
+    error: "8-40 symbols (at least 1 number, 1 capital)",
+    regExp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40})$/,
+  },
   cpassword: {
     error: "8-40 symbols (at least 1 number, 1 capital)",
     regExp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40})$/,
