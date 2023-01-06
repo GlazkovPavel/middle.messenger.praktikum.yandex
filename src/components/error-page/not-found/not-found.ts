@@ -1,6 +1,7 @@
 import template from './not-found.hbs';
-import Block from "../../../utils/block";
-import {Button} from "../../shared/button";
+import {Button} from "../../shared/components/button";
+import router from '../../../utils/router';
+import {Block} from '../../../utils/block';
 
 export class NotFound extends Block {
     constructor() {
@@ -19,7 +20,7 @@ export class NotFound extends Block {
     }
 
     private backToChats(): void {
-        console.log('back-to-chats');
+        router.go('/messenger')
     }
 
     render() {

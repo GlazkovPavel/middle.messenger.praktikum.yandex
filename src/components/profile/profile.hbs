@@ -1,23 +1,24 @@
  <div class="container__profile">
-  <button class="button-back"></button>
+   {{{buttonBack}}}
   <div class="profile-main">
-    <div class="avatar">
-      <div class="avatar__photo-container">
-        <figure class="avatar__photo-edit"></figure>
-        <img class="avatar__photo" src="{{avatar}}"  alt="avatar">
-      </div>
-      <div class="avatar__name">Hi, {{name}}</div>
-    </div>
+    {{{avatar}}}
+    {{{ popupAvatar }}}
+    {{{ popupPasswordError }}}
+    {{{ popupError }}}
     <div class="profile-form">
       {{#if isProfileEdit}}
-       {{{ profileEdit }}}
-       {{else}}
-       {{{ profileEditPassword }}}
-       {{/if}}
+        {{{ profileEdit }}}
+      {{else}}
+        {{{ profileEditPassword }}}
+      {{/if}}
     </div>
     <div class="button__container">
         {{# if isCanEdit }}
-          {{{ buttonSave }}}
+          {{# if isProfileEdit }}
+            {{{ buttonSaveUser }}}
+          {{else}}
+            {{{ buttonSavePassword }}}
+          {{/if}}
         {{else}}
           {{{ buttonEdit }}}
           {{{ buttonEditPassword }}}
@@ -26,4 +27,5 @@
     </div>
 
   </div>
+
 </div>

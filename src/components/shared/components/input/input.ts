@@ -1,15 +1,15 @@
 import template from './input.hbs';
-import Block from "../../../utils/block";
-import {IInputProps} from "../interfaces/input.interface";
-import {validate} from '../../../utils/validate';
+import {IInputProps} from "../../interfaces/input.interface";
+import {validate} from '../../../../utils/validate';
+import {Block} from '../../../../utils/block';
 
-export class Input extends Block<IInputProps> {
+export class Input extends Block {
   constructor(props: IInputProps) {
     const events = {
       focusin: (e: Event): void => this.onFocus(e),
       focusout: (e: Event): void => this.onBlur(e),
     };
-    super({class: 'container__form-input', value: '', events,  ...props});
+    super({class: 'container__form-input', events,  ...props});
   }
 
   public setValue(value: string) {

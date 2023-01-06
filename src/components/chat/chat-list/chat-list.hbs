@@ -1,12 +1,16 @@
-<section>
+<aside>
   <div class="chat-header">
-    <a href="/profile">Profile</a>
+    {{{ button }}}
     {{{ input }}}
+    <span id="input-create-error" class="input-error"></span>
+    {{{ buttonCreateChat }}}
   </div>
   <div class="chats">
-    {{#each chat}}
-      {{{this}}}
-    {{/each}}
+
+      {{#each chats}}
+        {{{this}}}
+      {{/each}}
+
   </div>
-</section>
+</aside>
 

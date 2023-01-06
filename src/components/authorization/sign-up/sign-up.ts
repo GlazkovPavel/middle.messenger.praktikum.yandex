@@ -1,8 +1,8 @@
 import template from './sign-up.hbs';
-import Block from "../../../utils/block";
-import {Input} from "../../shared/input/input";
-import {Button} from "../../shared/button";
-
+import {Input} from "../../shared/components/input/input";
+import {Button} from "../../shared/components/button";
+import authController from "../../../controllers/auth-controller";
+import {Block} from '../../../utils/block';
 export class SignUp extends Block {
 
     constructor() {
@@ -52,13 +52,6 @@ export class SignUp extends Block {
             placeholder: 'Password',
         });
 
-        this.children.cpassword = new Input({
-            name: 'cpassword',
-            id: 'cpassword',
-            type: 'cpassword',
-            placeholder: 'Repeat the password',
-        });
-
         this.children.button = new Button({
             label: 'Sign up',
             id: 'sign-up',
@@ -80,6 +73,7 @@ export class SignUp extends Block {
 
       const data = Object.fromEntries(values);
       console.log(data);
+      authController.signup(data).then(r => console.log(r));
     }
 
     render() {

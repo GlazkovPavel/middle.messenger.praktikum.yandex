@@ -29,6 +29,14 @@ export const patterns: Record<string, IPattern> = {
     error: "2-15 symbols",
     regExp: /^[а-яa-zА-ЯA-Z0-9_-]{2,15}$/,
   },
+  oldPassword: {
+    error: "8-40 symbols (at least 1 number, 1 capital)",
+    regExp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40})$/,
+  },
+  newPassword: {
+    error: "8-40 symbols (at least 1 number, 1 capital)",
+    regExp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40})$/,
+  },
   password: {
     error: "8-40 symbols (at least 1 number, 1 capital)",
     regExp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40})$/,
@@ -39,6 +47,18 @@ export const patterns: Record<string, IPattern> = {
   },
   message: {
     error: "write something",
+    regExp: /(.|\s)*\S(.|\s)*$/,
+  },
+  search: {
+    error: "write something",
+    regExp: /(.|\s)*\S(.|\s)*$/,
+  },
+  inputCreate: {
+    error: "Напишите что-нибудь...",
+    regExp: /(.|\s)*\S(.|\s)*$/,
+  },
+  avatar: {
+    error: "вставьте файл",
     regExp: /(.|\s)*\S(.|\s)*$/,
   },
 };

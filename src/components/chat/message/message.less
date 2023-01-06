@@ -1,0 +1,42 @@
+@import "../../../index";
+.text-message {
+  background-color: @colorBackgroundMessage;
+  color: @colorWhite;
+  border-radius: 10px;
+  margin: 0 0 16px;
+  font-size: 14px;
+  max-width: 400px;
+  width: max-content;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+
+}
+
+.from-me {
+  align-self: flex-end;
+  background-color: @colorMyMessage;
+  margin-left: auto;
+}
+
+.time-message {
+  text-align: center;
+  font-size: 9.6px;
+  margin-left: 6px;
+  color: @colorWhite;
+  align-self: flex-end;
+  background: none;
+}
+
+.time-from-me {
+  color: @colorWhite;
+}
+
+.read {
+  color: @colorRed;
+  padding: 8px 0 0 8px;
+  &::before {
+    content: url(../../../../static/images/photo-video.svg);
+    margin-right: 4px;
+  }
+}

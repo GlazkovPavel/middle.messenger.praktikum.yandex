@@ -6,9 +6,11 @@
   border-bottom: 1px solid @colorWhiteSmoke;
   border-top: 1px solid @colorWhiteSmoke;
   padding: @part10px;
+  cursor: pointer;
 
   .photo {
     width: 50px;
+    background: none;
   }
 
   .photo__avatar {
@@ -18,8 +20,16 @@
     border-radius: 50%;
   }
 
+  .no-avatar {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background: none;
+  }
+
   .chat-container {
     margin-left: @part10px;
+    background: none;
   }
 
   .user-name {
@@ -27,11 +37,13 @@
     font-weight: 600;
     font-size: 13px;
     line-height: 13px;
+    background: none;
   }
 
   .chat-text {
     display: flex;
     width: 200px;
+    background: none;
   }
 
   .my-chat {
@@ -47,20 +59,37 @@
     font-size: 12px;
     line-height: 15px;
     color: @colorGrey;
+    background: none;
   }
 
   .chat-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 100%;
     margin: 2px 0;
+    background: none;
+
+    .button-delete {
+      width: 12px;
+      height: 12px;
+      background: url("../../../../static/images/delete.svg");
+      border: none;
+      transition: background .2s ease-in, box-shadow .2s ease-in;
+      border-radius: 50%;
+      &:hover {
+        background-color: @colorGrey70;
+        box-shadow: 0 0 0 4px @colorGrey70;
+        cursor: pointer;
+      }
+    }
 
     .time {
       font-weight: 500;
       font-size: 9px;
       line-height: 13px;
-      color: @colorGrey;
+      color: @colorBlack;
+      background: none;
     }
 
     .total-message {
@@ -74,5 +103,14 @@
       width: 20px;
       height: 20px;
     }
+
+    .from {
+      margin: 0;
+      color: @colorBlue;
+      margin-right: 4px;
+    }
   }
+}
+.selected {
+  background: @colorGrey70;
 }

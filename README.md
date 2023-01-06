@@ -8,7 +8,7 @@
 - Установить все зависимости с помощью команды "npm i",
 - Запустить проект с помощью команды "npm run dev",
 - Проект должен запуститься на http://localhost:1234/
-- Посмотреть на проект можно [тут](https://imaginative-moonbeam-67daba.netlify.app/)
+- Посмотреть на проект можно [тут](https://deploy-preview-4--imaginative-moonbeam-67daba.netlify.app/)
 
 ### **Мои контакты**
 

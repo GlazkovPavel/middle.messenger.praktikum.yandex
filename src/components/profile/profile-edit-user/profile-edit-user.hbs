@@ -1,39 +1,89 @@
 <div class="user-profile">
   <form class="profile__form" novalidate>
-    <fieldset class="profile__fields">
+    <fieldset class="profile__fields"
+      {{# if isCanEdit }} disabled {{/if}}
+    >
       <div class="profile__container">
         <p class="profile__form-input-name">Email</p>
-        {{{ userEmail }}}
+        <input
+          type="email"
+          name="email"
+          class="profile__form-input"
+          required
+          minlength="2"
+          id="email-input"
+          value="{{user.email}}"
+        />
       </div>
       <span id="email-input-error" class="input-error"></span>
       <hr/>
       <div class="profile__container">
         <p class="profile__form-input-name">Username</p>
-        {{{ username }}}
+        <input
+          type="text"
+          name="login"
+          class="profile__form-input"
+          required
+          minlength="2"
+          id="login-input"
+          value="{{user.login}}"
+        />
       </div>
       <span id="username-input-error" class="input-error"></span>
       <hr/>
       <div class="profile__container">
         <p class="profile__form-input-name">Name</p>
-        {{{ firstName }}}
+        <input
+          type="text"
+          name="first_name"
+          class="profile__form-input"
+          required
+          minlength="2"
+          id="first_name-input"
+          value="{{user.first_name}}"
+        />
       </div>
       <span id="first_name-input-error" class="input-error"></span>
       <hr/>
       <div class="profile__container">
         <p class="profile__form-input-name">Surname</p>
-        {{{ secondName }}}
+        <input
+          type="text"
+          name="second_name"
+          class="profile__form-input"
+          required
+          minlength="2"
+          id="second_name-input"
+          value="{{user.second_name}}"
+        />
       </div>
       <span id="second_name-input-error" class="input-error"></span>
       <hr/>
       <div class="profile__container">
         <p class="profile__form-input-name">Name In Chat</p>
-        {{{ displayName }}}
+        <input
+          type="text"
+          name="display_name"
+          class="profile__form-input"
+          required
+          minlength="2"
+          id="display_name-input"
+          value="{{user.display_name}}"
+        />
       </div>
       <span id="display_name-input-error" class="input-error"></span>
       <hr/>
       <div class="profile__container">
         <p class="profile__form-input-name">Phone</p>
-        {{{ phone }}}
+        <input
+          type="tel"
+          name="phone"
+          class="profile__form-input"
+          required
+          minlength="2"
+          id="phone-input"
+          value="{{user.phone}}"
+        />
       </div>
       <span id="phone-input-error" class="input-error"></span>
     </fieldset>

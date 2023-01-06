@@ -1,6 +1,6 @@
-import {escape} from "../../../const/const";
+import {escape} from "../../../../const/const";
 
-export class Popup {
+export class PopupAttachment {
 
     _isOpenPopup = false;
     private popupElement: HTMLElement | null;

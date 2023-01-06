@@ -1,16 +1,23 @@
-<div class="chat-message">
-  <div class="photo">
-    <img class="photo__avatar" alt="avatar" src={{photo}}>
-  </div>
+<div class="chat-message {{#if isSelected}}selected{{/if}}">
+    <div class="photo">
+      {{#if avatar }}
+      <img class="photo__avatar" alt="avatar" src="https://ya-praktikum.tech/api/v2/resources{{avatar}}">
+      {{else}} <p class="no-avatar">{{title}}</p>
+      {{/if}}
+    </div>
   <div class="chat-container">
-    <span class="user-name">{{name}}</span>
+    <span class="user-name">{{title}}</span>
     <div class="chat-text">
-      <span class="my-chat show">You:</span>
-      <span class="message">{{message}}</span>
+        <span class="message"> {{ last_message.content }}</span>
     </div>
   </div>
   <div class="chat-info">
-    <span class="time">{{timeMessage}}</span>
-    <span class="total-message">{{totalMessage}}</span>
+    <span class="time">{{time}}</span>
+    {{#if isMine}}
+      {{{buttonDelete}}}
+    {{/if}}
+    {{#if unread_count }}
+      <span class="total-message">{{unread_count}}</span>
+    {{/if}}
   </div>
 </div>
