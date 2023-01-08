@@ -53,6 +53,11 @@ class Router {
     return this;
   }
 
+  public reset(): void {
+    this._routes = [];
+    this._currentRoute = null;
+  }
+
   public start() {
     window.onpopstate = (event: PopStateEvent) => {
       const target = event.currentTarget as Window;
