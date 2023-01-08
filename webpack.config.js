@@ -22,16 +22,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use:
-          {
-            loader: 'ts-loader',
-            options: {
-              configFile: path.resolve(__dirname, 'tsconfig.json'),
-            },
-          }
-          ,
-        exclude: /(node_modules)/
+        test: /\.ts?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.hbs$/,
