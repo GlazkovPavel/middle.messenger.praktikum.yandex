@@ -1,4 +1,7 @@
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -10,20 +13,59 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
+  devServer: {
+    compress: true,
+    port: 3000,
+    open: true,
+    hot: true,
+  },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: [
+        use:
           {
             loader: 'ts-loader',
             options: {
               configFile: path.resolve(__dirname, 'tsconfig.json'),
             },
+          }
+          ,
+        exclude: /(node_modules)/
+      },
+      {
+        test: /\.hbs$/,
+        use: ['handlebars-loader'],
+        exclude: /(node_modules)/
+      },
+      {
+        test: /\.less$/i,
+        use: ['style-loader', 'css-loader','less-loader']
+      },
+      { test: /\.svg$/, type: "asset" },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: "asset/resource",
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              useRelativePath: true,
+              esModule: false,
+            },
           },
         ],
-        exclude: /(node_modules)/
-      }
+      },
+
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+
+  ]
 };
