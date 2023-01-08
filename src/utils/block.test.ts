@@ -3,7 +3,7 @@ import sinon from "sinon";
 import proxyquire from "proxyquire";
 import {expect} from "chai";
 
-describe.only('Block', () => {
+describe('Block', () => {
   const eventBusMock = {
     on: sinon.fake(),
     emit: sinon.fake(),
