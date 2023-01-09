@@ -2,4 +2,5 @@ dist
 .github
 .parcel-cache
 .parseIrc
+.DS_Store
 node_modules
