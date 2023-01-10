@@ -1,65 +1,15 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.common');
+const developmentConfig = require('./webpack.dev');
+const productionConfig = require('./webpack.prod');
 
-module.exports = {
-  mode: 'development',
-  entry: './src/index.ts',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
-  },
-  resolve: {
-    extensions: ['.ts', '.js', '.json'],
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
-    compress: true,
-    port: 3000,
-    open: true,
-    hot: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.hbs$/,
-        use: ['handlebars-loader'],
-        exclude: /(node_modules)/,
-      },
-      {
-        test: /\.less$/i,
-        use: ['style-loader', 'css-loader', 'less-loader'],
-      },
-      { test: /\.svg$/, type: 'asset' },
-      {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              useRelativePath: true,
-              esModule: false,
-            },
-          },
-        ],
-      },
-
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
-
-  ],
+module.exports = (env, args) => {
+  switch (args.mode) {
+    case 'development':
+      return merge(commonConfig, developmentConfig);
+    case 'production':
+      return merge(commonConfig, productionConfig);
+    default:
+      throw new Error('Файл конфигурации webpack не найден!');
+  }
 };
