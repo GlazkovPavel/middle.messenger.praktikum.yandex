@@ -1,12 +1,12 @@
-import {SignIn} from './components/authorization/sign-in/sign-in';
-import {SignUp} from './components/authorization/sign-up/sign-up';
-import {ServerError} from './components/error-page/server-error/server-error';
-import {NotFound} from './components/error-page/not-found/not-found';
-import {Chat} from "./components/chat/chat";
+import { SignIn } from './components/authorization/sign-in/sign-in';
+import { SignUp } from './components/authorization/sign-up/sign-up';
+import { ServerError } from './components/error-page/server-error/server-error';
+import { NotFound } from './components/error-page/not-found/not-found';
+import { Chat } from './components/chat/chat';
 import Router from './utils/router';
-import {Routes} from './components/shared/enums/routes.enum';
-import {ProfilePage} from "./components/profile/profile";
-import AuthController from "./controllers/auth-controller";
+import { Routes } from './components/shared/enums/routes.enum';
+import { ProfilePage } from './components/profile/profile';
+import AuthController from './controllers/auth-controller';
 
 document.addEventListener('DOMContentLoaded', async () => {
   let isProtectedRoute = true;
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.NOT_FOUND, NotFound)
     .use(Routes.SERVER_ERROR, ServerError)
     .use(Routes.MESSENGER, Chat)
-    .use(Routes.SETTING, ProfilePage)
+    .use(Routes.SETTING, ProfilePage);
 
   switch (path) {
     case Routes.SIGN_IN:
@@ -26,14 +26,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       break;
   }
 
-
   try {
     await AuthController.fetchUser();
 
     Router.start();
 
     if (!isProtectedRoute) {
-      Router.go(Routes.MESSENGER)
+      Router.go(Routes.MESSENGER);
     }
   } catch (e) {
     Router.start();
@@ -42,6 +41,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       Router.go(Routes.SIGN_IN);
     }
   }
-
-
-})
+});

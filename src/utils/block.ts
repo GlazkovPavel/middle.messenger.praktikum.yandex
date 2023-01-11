@@ -230,3 +230,4 @@ export class Block<P extends Record<string, any> = any> {
     this.getContent()!.classList.remove('open');
   }
 }
+export default Block;
